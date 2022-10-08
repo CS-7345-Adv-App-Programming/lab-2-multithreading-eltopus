@@ -22,13 +22,17 @@ struct Image
     int channels;
 
     Image(const char* filename);
+    Image();
+    Image(const std::string input);
     Image(int w, int h, int channels);
+    Image(int w, int h, int channels, size_t size);
     Image(const Image& img);
     ~Image();
 
     bool read(const char* filename);
     uint8_t* readAndReturn(const char* filename);
     bool write(const char* filename);
+    void loadFromMemory(const std::vector<char> &img_data);
 
     ImageType getFileType(const char* filename);
     Image& grayscale_avg();
@@ -37,6 +41,7 @@ struct Image
     Image& encodeMessage(const char* message);
     Image& decodeMessage(char* buffer, size_t* messageLength);
     uint8_t* getImageData();
+    std::string decodeByte(const std::string input); 
 
 };
 

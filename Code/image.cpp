@@ -1,9 +1,22 @@
 #define STB_IMAGE_IMPLEMENTATION
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 
+#include "base64.cpp"
 #include "image.h"
 #include "stb_image.h"
 #include "stb_image_write.h"
+
+
+
+Image::Image() {
+    
+}
+
+Image::Image(const std::string input) {
+    std::string decoded_data = base64_decode(input);
+    std::vector<char> img_data(decoded_data.begin(), decoded_data.end());
+    loadFromMemory(img_data);
+}
 
 
 Image::Image(const char* filename) {
@@ -19,6 +32,13 @@ Image::Image(const char* filename) {
 Image::Image(int w, int h, int channels) : w(w), h(h), channels(channels) {
     size = w*h*channels;
     data = new uint8_t[size];
+}
+
+Image:: Image(int w, int h, int channels, size_t size) {
+    this->size = size;
+    this->w = w;
+    this->h = h;
+    this->channels = channels;
 }
 
 Image::Image(const Image& img) : Image(img.w, img.h, img.channels) {
@@ -92,7 +112,7 @@ ImageType Image::getFileType(const char* filename) {
 
 Image& Image::grayscale_avg() {
     if (channels < 3) {
-        printf("Image %p has less than 3 channels and therefore assumed to be grayscaled");
+        printf("Image has less than 3 channels and therefore assumed to be grayscaled");
     }else {
         for(int i = 0; i < size; i+=channels) {
             int gray = (data[i] + data[i+1] + data[i+2]) / 3;
@@ -106,7 +126,7 @@ Image& Image::grayscale_avg() {
 Image& Image::grayscale_lum() {
 
 if (channels < 3) {
-        printf("Image %p has less than 3 channels and therefore assumed to be grayscaled");
+        printf("Image has less than 3 channels and therefore assumed to be grayscaled");
     }else {
         for(int i = 0; i < size; i+=channels) {
             int gray = 0.2126 * data[i] + 0.7152* data[i+1] + 0.0722 * data[i+2];
@@ -114,6 +134,7 @@ if (channels < 3) {
         }
         return *this;
     }
+    printf("I am about to return");
     return *this;
 }
 
@@ -179,4 +200,16 @@ uint8_t* Image::getImageData() {
     return data;
 }
 
-//https://www.youtube.com/watch?v=ATkbOckoCZc&list=PLG5M8QIx5lkzdGkdYQeeCK__As6sI2tOY&index=4uint32_t len = strlen(message) * 8;
+//https://www.youtube.com/watch?v=ATkbOckoCZc&list=PLG5M8QIx5lkzdGkdYQeeCK__As6sI2tOY&index=4
+
+
+void Image::loadFromMemory(const std::vector<char> &img_data)
+{
+	data  = stbi_load_from_memory((const stbi_uc *)img_data.data(), img_data.size(), &w, &h, &channels, 0);
+    size = w*h*channels;
+}
+
+std::string Image::decodeByte(const std::string input) {
+    return base64_decode(input);
+}
+
