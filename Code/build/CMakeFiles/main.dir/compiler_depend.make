@@ -236,15 +236,6 @@ CMakeFiles/main.dir/main.cpp.o: /home/kali/LABS/lab-2-multithreading-eltopus/Cod
   /usr/lib/gcc/x86_64-linux-gnu/11/include/mmintrin.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/mm_malloc.h \
   /home/kali/LABS/lab-2-multithreading-eltopus/Code/stb_image_write.h \
-  /home/kali/LABS/lab-2-multithreading-eltopus/Code/images.cpp \
-  /usr/include/c++/11/random \
-  /usr/include/c++/11/bits/random.h \
-  /usr/include/x86_64-linux-gnu/c++/11/bits/opt_random.h \
-  /usr/include/c++/11/bits/random.tcc \
-  /usr/include/c++/11/numeric \
-  /usr/include/c++/11/bits/stl_numeric.h \
-  /usr/include/c++/11/bit \
-  /usr/include/c++/11/pstl/glue_numeric_defs.h \
   /usr/include/c++/11/iostream \
   /usr/include/c++/11/ostream \
   /usr/include/c++/11/ios \
@@ -268,6 +259,15 @@ CMakeFiles/main.dir/main.cpp.o: /home/kali/LABS/lab-2-multithreading-eltopus/Cod
   /usr/include/c++/11/bits/ostream.tcc \
   /usr/include/c++/11/istream \
   /usr/include/c++/11/bits/istream.tcc \
+  /home/kali/LABS/lab-2-multithreading-eltopus/Code/images.cpp \
+  /usr/include/c++/11/random \
+  /usr/include/c++/11/bits/random.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/opt_random.h \
+  /usr/include/c++/11/bits/random.tcc \
+  /usr/include/c++/11/numeric \
+  /usr/include/c++/11/bits/stl_numeric.h \
+  /usr/include/c++/11/bit \
+  /usr/include/c++/11/pstl/glue_numeric_defs.h \
   /usr/include/c++/11/fstream \
   /usr/include/c++/11/bits/codecvt.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
@@ -298,8 +298,11 @@ CMakeFiles/main.dir/main.cpp.o: /home/kali/LABS/lab-2-multithreading-eltopus/Cod
   /usr/include/c++/11/bits/shared_ptr_base.h \
   /usr/include/c++/11/bits/allocated_ptr.h \
   /usr/include/c++/11/bits/fs_dir.h \
-  /usr/include/c++/11/bits/fs_ops.h
+  /usr/include/c++/11/bits/fs_ops.h \
+  /usr/include/c++/11/bitset
 
+
+/usr/include/c++/11/bitset:
 
 /usr/include/c++/11/bits/fs_ops.h:
 
@@ -341,19 +344,19 @@ CMakeFiles/main.dir/main.cpp.o: /home/kali/LABS/lab-2-multithreading-eltopus/Cod
 
 /usr/include/c++/11/fstream:
 
+/usr/include/c++/11/bit:
+
+/usr/include/c++/11/bits/stl_numeric.h:
+
+/usr/include/c++/11/numeric:
+
+/usr/include/c++/11/bits/random.h:
+
+/usr/include/c++/11/random:
+
+/home/kali/LABS/lab-2-multithreading-eltopus/Code/images.cpp:
+
 /usr/include/c++/11/bits/istream.tcc:
-
-/usr/include/c++/11/istream:
-
-/usr/include/c++/11/bits/ostream.tcc:
-
-/usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h:
-
-/usr/include/c++/11/bits/streambuf_iterator.h:
-
-/usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h:
-
-/usr/include/x86_64-linux-gnu/bits/wctype-wchar.h:
 
 /usr/include/stdlib.h:
 
@@ -381,8 +384,6 @@ CMakeFiles/main.dir/main.cpp.o: /home/kali/LABS/lab-2-multithreading-eltopus/Cod
 
 /usr/include/strings.h:
 
-/usr/include/c++/11/numeric:
-
 /usr/include/c++/11/cstdlib:
 
 /usr/include/c++/11/bits/stl_iterator_base_types.h:
@@ -390,8 +391,6 @@ CMakeFiles/main.dir/main.cpp.o: /home/kali/LABS/lab-2-multithreading-eltopus/Cod
 /usr/include/c++/11/tr1/poly_laguerre.tcc:
 
 /usr/include/assert.h:
-
-/usr/include/c++/11/bit:
 
 /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
 
@@ -415,10 +414,6 @@ CMakeFiles/main.dir/main.cpp.o: /home/kali/LABS/lab-2-multithreading-eltopus/Cod
 
 /usr/include/x86_64-linux-gnu/bits/cpu-set.h:
 
-/usr/include/wctype.h:
-
-/usr/include/sched.h:
-
 /usr/include/pthread.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/gthr-default.h:
@@ -438,6 +433,10 @@ CMakeFiles/main.dir/main.cpp.o: /home/kali/LABS/lab-2-multithreading-eltopus/Cod
 /usr/include/x86_64-linux-gnu/bits/endianness.h:
 
 /usr/include/c++/11/tr1/modified_bessel_func.tcc:
+
+/usr/include/c++/11/pstl/glue_numeric_defs.h:
+
+/usr/include/x86_64-linux-gnu/bits/locale.h:
 
 /usr/include/locale.h:
 
@@ -535,10 +534,6 @@ CMakeFiles/main.dir/main.cpp.o: /home/kali/LABS/lab-2-multithreading-eltopus/Cod
 
 /usr/include/features.h:
 
-/usr/include/c++/11/bits/locale_facets.tcc:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
-
 /usr/include/c++/11/bits/stringfwd.h:
 
 /usr/include/c++/11/bits/stl_function.h:
@@ -550,10 +545,6 @@ CMakeFiles/main.dir/main.cpp.o: /home/kali/LABS/lab-2-multithreading-eltopus/Cod
 /usr/include/x86_64-linux-gnu/bits/types/time_t.h:
 
 /home/kali/LABS/lab-2-multithreading-eltopus/Code/main.cpp:
-
-/usr/include/x86_64-linux-gnu/bits/locale.h:
-
-/usr/include/c++/11/pstl/glue_numeric_defs.h:
 
 /usr/include/x86_64-linux-gnu/bits/wchar.h:
 
@@ -576,6 +567,8 @@ CMakeFiles/main.dir/main.cpp.o: /home/kali/LABS/lab-2-multithreading-eltopus/Cod
 /usr/include/x86_64-linux-gnu/bits/wordsize.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/wctype-wchar.h:
 
 /usr/include/c++/11/functional:
 
@@ -645,6 +638,8 @@ CMakeFiles/main.dir/main.cpp.o: /home/kali/LABS/lab-2-multithreading-eltopus/Cod
 
 /usr/include/c++/11/clocale:
 
+/usr/include/c++/11/bits/ostream.tcc:
+
 /usr/include/wchar.h:
 
 /usr/include/c++/11/bits/cxxabi_init_exception.h:
@@ -687,6 +682,12 @@ CMakeFiles/main.dir/main.cpp.o: /home/kali/LABS/lab-2-multithreading-eltopus/Cod
 
 /usr/include/x86_64-linux-gnu/bits/errno.h:
 
+/usr/include/sched.h:
+
+/usr/include/wctype.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h:
 
 /usr/include/asm-generic/errno.h:
@@ -701,13 +702,9 @@ CMakeFiles/main.dir/main.cpp.o: /home/kali/LABS/lab-2-multithreading-eltopus/Cod
 
 /usr/include/c++/11/bits/basic_string.tcc:
 
-/home/kali/LABS/lab-2-multithreading-eltopus/Code/images.cpp:
-
 /usr/include/c++/11/vector:
 
 /usr/include/c++/11/bits/stl_uninitialized.h:
-
-/usr/include/c++/11/bits/stl_numeric.h:
 
 /usr/include/c++/11/bits/stl_vector.h:
 
@@ -811,14 +808,6 @@ CMakeFiles/main.dir/main.cpp.o: /home/kali/LABS/lab-2-multithreading-eltopus/Cod
 
 /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h:
 
-/usr/include/c++/11/bits/codecvt.h:
-
-/usr/include/c++/11/bits/basic_ios.tcc:
-
-/usr/include/c++/11/bits/enable_special_members.h:
-
-/usr/include/x86_64-linux-gnu/c++/11/bits/opt_random.h:
-
 /usr/include/x86_64-linux-gnu/bits/fp-logb.h:
 
 /usr/include/c++/11/bits/ios_base.h:
@@ -832,8 +821,6 @@ CMakeFiles/main.dir/main.cpp.o: /home/kali/LABS/lab-2-multithreading-eltopus/Cod
 /usr/include/c++/11/bits/locale_classes.tcc:
 
 /usr/include/x86_64-linux-gnu/bits/mathcalls.h:
-
-/usr/include/c++/11/bits/random.h:
 
 /usr/include/c++/11/bits/postypes.h:
 
@@ -881,8 +868,6 @@ CMakeFiles/main.dir/main.cpp.o: /home/kali/LABS/lab-2-multithreading-eltopus/Cod
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/mmintrin.h:
 
-/usr/include/c++/11/random:
-
 /usr/include/c++/11/ostream:
 
 /usr/include/c++/11/ios:
@@ -896,3 +881,21 @@ CMakeFiles/main.dir/main.cpp.o: /home/kali/LABS/lab-2-multithreading-eltopus/Cod
 /usr/include/c++/11/bits/basic_ios.h:
 
 /usr/include/c++/11/cwctype:
+
+/usr/include/c++/11/bits/streambuf_iterator.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
+
+/usr/include/c++/11/bits/locale_facets.tcc:
+
+/usr/include/c++/11/bits/codecvt.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/opt_random.h:
+
+/usr/include/c++/11/bits/enable_special_members.h:
+
+/usr/include/c++/11/bits/basic_ios.tcc:
+
+/usr/include/c++/11/istream:

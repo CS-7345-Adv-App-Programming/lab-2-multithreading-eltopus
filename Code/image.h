@@ -6,12 +6,16 @@
 
 #include <stdint.h>
 #include <cstdio>
+#include <string>
+#include <vector>
 
 const unsigned long STEG_HEADER_SIZE = sizeof(uint32_t) * 8;
 
 enum ImageType {
     PNG, JPG, BMP, TGA
 };
+
+
 
 struct Image 
 {
@@ -20,28 +24,27 @@ struct Image
     int w;
     int h;
     int channels;
-
-    Image(const char* filename);
+    
+    // Image(const char* filename);
     Image();
-    Image(const std::string input);
+    Image(char* input);
     Image(int w, int h, int channels);
-    Image(int w, int h, int channels, size_t size);
-    Image(const Image& img);
+    // Image(int w, int h, int channels, size_t size);
+    // Image(const Image& img);
     ~Image();
 
     bool read(const char* filename);
-    uint8_t* readAndReturn(const char* filename);
     bool write(const char* filename);
     void loadFromMemory(const std::vector<char> &img_data);
 
     ImageType getFileType(const char* filename);
-    Image& grayscale_avg();
+    void grayscale_avg();
     Image& grayscale_lum();
     Image& colorMask(float r, float g, float b);
     Image& encodeMessage(const char* message);
     Image& decodeMessage(char* buffer, size_t* messageLength);
-    uint8_t* getImageData();
     std::string decodeByte(const std::string input); 
+    char* encodeByte();
 
 };
 

@@ -12,6 +12,11 @@
 #define WHITE 255
 #define BLACK 0
 #include <vector>
+#include <bitset>
+#include <cmath>
+#include <iomanip>
+
+
 
 using namespace std;
 
@@ -36,6 +41,30 @@ static vector<char> ReadAllBytes(char const* filename)
 
     return result;
 }
+
+static std::string bin_to_char( std::string char_out ) // Convert binary to ASCII.
+{
+
+	// Allows the sequence of strings to be accessed directly as a string.
+	std::istringstream in( char_out );
+
+	// Divides the bits into bytes.
+	std::bitset<8> bs;
+
+	std::cout << std::endl << "Your input in ASCII is: ";
+
+	// B-A Conversion
+	// Loop extracts the bytes in the string and prints them as there ascii values.
+	while ( in >> bs )
+	{
+		std::cout << char( bs.to_ulong() );
+	}
+
+	std::cout << endl;
+
+	return char_out;
+
+}
  
 
 
@@ -49,22 +78,28 @@ int main(int argc, char** argv)
     // std::vector<char> byte = ReadAllBytes("input/spider.png");
 
 
-    std::ifstream myfile ("bmp.txt");
+    std::ifstream myfile ("base64/bpng.txt");
     std::string mystring;
     if ( myfile.is_open() ) { 
-        myfile >> mystring; 
-        // std::cout << mystring; 
+        myfile >> mystring;
     }
 
-    Image image(mystring);
+    size_t len = mystring.length();
+    char* buffer = (char*)malloc(sizeof(char) * len);
+    strcpy(buffer, mystring.c_str());
+
+    Image image(buffer);
+    cout << image.w << " " << image.h << " " << " " << image.channels << " " << image.size << endl;
     image.grayscale_avg();
-    image.write("test1.jpeg");
+    image.write("output/out2.png");
+    // std::string encodedData = image.encodeByte();
 
-    // const uint8_t* p = reinterpret_cast<const uint8_t*>(str.c_str());
+    // Image image2(encodedData);
+    // image2.write("output/out.png");
+   
 
 
-    //Image image(width, height, bitDepth);
-    //image.write("test.bmp");
+  
 
     // std::string path = "./input";
     // for (auto & p : fs::directory_iterator(path)) {

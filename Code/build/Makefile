@@ -132,12 +132,19 @@ main/fast:
 main.o: main.cpp.o
 .PHONY : main.o
 
-# target to build an object file
-main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.cpp.o
-.PHONY : main.cpp.o
+# target to build an object fileCMAKE_BINARY_DIR = /home/kali/lab-1-emscripten-eltopus/Code/build
 
-main.i: main.cpp.i
+MATRIX_CPP = /home/kali/lab-1-emscripten-eltopus/Code/matrix.cpp
+WASM_OUTPUT = /home/kali/lab-1-emscripten-eltopus/Code/output
+WASM_WASM = /home/kali/lab-1-emscripten-eltopus/Code/output.wasm
+MATRIX_GLUE_WRAPPER = /home/kali/lab-1-emscripten-eltopus/Code/matrix_glue_wrapper.cpp
+MATRIX_GLUE = /home/kali/lab-1-emscripten-eltopus/Code/glue.cpp
+NODE = /home/kali/lab-1-emscripten-eltopus/Code/app.js
+OUTPUT_JS = /home/kali/lab-1-emscripten-eltopus/Code/output.js
+GLUE_JS = /home/kali/lab-1-emscripten-eltopus/Code/glue.js
+EMSDK_ROOT_FOLDER = /home/kali/emsdk/upstream/emscripten
+REPO_CODE_DIR = /home/kali/lab-1-emscripten-eltopus/Code
+
 .PHONY : main.i
 
 # target to preprocess a source file
@@ -164,9 +171,14 @@ help:
 	@echo "... main"
 	@echo "... main.o"
 	@echo "... main.i"
-	@echo "... main.s"
-.PHONY : help
+	@echo "... main.s"CMAKE_BINARY_DIR = /home/kali/lab-1-emscripten-eltopus/Code/build
 
+IMAGE_CPP = /home/kali/LABS/lab-2-multithreading-eltopus/Code/image.cpp
+IMAGE_GLUE_WRAPPER = /home/kali/LABS/lab-2-multithreading-eltopus/Code/image_glue_wrapper.cpp
+OUTPUT_JS = /home/kali/LABS/lab-2-multithreading-eltopus/Code/output.js
+GLUE_JS = /home/kali/LABS/lab-2-multithreading-eltopus/Code/glue.js
+EMSDK_ROOT_FOLDER = /home/kali/emsdk/upstream/emscripten
+REPO_CODE_DIR = /home/kali/LABS/lab-2-multithreading-eltopus/Code
 
 
 #=============================================================================
@@ -182,3 +194,9 @@ cmake_check_build_system:
 compile:
 	$(SHELL source ./home/kali/emsdk/emsdk_env.sh)
 	emcc $(CMAKE_SOURCE_DIR)/main.cpp -o $(CMAKE_BINARY_DIR)/image
+
+glue:
+	python3 $(EMSDK_ROOT_FOLDER)/tools/webidl_binder.py $(REPO_CODE_DIR)/image_classes.idl $(REPO_CODE_DIR)/glue
+
+build:
+	emcc $(IMAGE_CPP) $(IMAGE_GLUE_WRAPPER) --post-js $(GLUE_JS) -O1 -o $(OUTPUT_JS) -s ALLOW_MEMORY_GROWTH=1 -s EXPORTED_RUNTIME_METHODS=["ccall, cwrap"]
