@@ -3,6 +3,7 @@
 #include<cstdlib>
 #include <ctime>
 #include <iostream>
+#include <vector>
 
 
 class ImageOperations {
@@ -13,6 +14,10 @@ class ImageOperations {
 
         ImageOperations (char* buffer){
             this->state_= new ConcreteImage(buffer);
+        }
+
+        ImageOperations (Image* state){
+            this->state_= state;
         }
       
         Image* getState() {
@@ -50,14 +55,14 @@ class ImageOperations {
 
         Image *save() {
             std::cout << "old image address: " << &this->state_ << std::endl;
-            Image* newState = new ConcreteImage(this->state_);
+            Image* newState = new ConcreteImage(*this->state_);
             this->state_ = newState;
             std::cout << "new image address: " << &newState << std::endl;
             return newState;
         }
 
-        void restore(Image* image) {
-            this->state_ = image->state();
+        void restore(Image* oldState) {
+            this->state_ = oldState->state();
             std::cout << "restored old image address: " << &this->state_ << std::endl;
             
         }

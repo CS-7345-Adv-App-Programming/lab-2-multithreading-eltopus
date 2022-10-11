@@ -7,7 +7,7 @@ class ConcreteImage: public Image {
    
 
      private:
-        Image* state_;
+        Image* state_;  
 
         virtual void loadFromMemory(const std::vector<char> &img_data) {
             data  = stbi_load_from_memory((const stbi_uc *)img_data.data(), img_data.size(), &w, &h, &channels, 0);
@@ -166,11 +166,6 @@ class ConcreteImage: public Image {
             
         }
 
-        ConcreteImage(Image& imageState){
-            this->state_ = &imageState;
-            
-        }
-
         ConcreteImage(int w, int h, int channels) {
             this->w = w;
             this->h = h;
@@ -181,12 +176,17 @@ class ConcreteImage: public Image {
 
 
         ConcreteImage(const Image& img) : ConcreteImage(img.w, img.h, img.channels) {
+            setState(img.state());
             memcpy(data, img.data, size);
         }
 
         Image* state() const override {
             return this->state_;
 
+        }
+
+        void setState(Image* state) {
+            this->state_ = state;
         }
         
         

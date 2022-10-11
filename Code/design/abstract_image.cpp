@@ -63,15 +63,13 @@ class Image
 
         virtual Type getFileType(const char* filename) = 0;
 
-
-
+   
     // protected:
         uint8_t* data = NULL;
         size_t size = 0;
         int w;
         int h;
         int channels;
-        int random;
-        
+        int random; 
 
 };

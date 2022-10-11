@@ -3,9 +3,10 @@
 #include <fstream>
 #include <iostream>
 #include <stdio.h>
-#include "image_operations.cpp"
-#include "images.cpp"
-#include "concrete_image.cpp"
+// #include "image_operations.cpp"
+// #include "images.cpp"
+// #include "concrete_image.cpp"
+#include "originator.cpp"
 
 
 
@@ -21,37 +22,16 @@ int main() {
     char* buffer = (char*)malloc(sizeof(char) * len);
     strcpy(buffer, mystring.c_str());
 
-
-    ImageOperations* ops = new ImageOperations(buffer);
-    Images* images = new Images(ops);
-    
-    images->Backup();
-    ops->grayscale_avg();
-    ops->write("gray.png");
-    images->undo();
-    ops->write("original.png");
-    images->Backup();
-    ops->grayscale_avg();
-    ops->write("gray2.png");
-    images->undo();
-    ops->write("original2.png");
-    // images->Backup();
+    Originator* state = new Originator(buffer);
+    state->grayscale_avg();
+    state->write("gray.png");
+    state->undo();
+    state->write("original.png");
+  
    
-   
-    // images->undo();
-    // std::cout << ops->getRandom() << std::endl;
+    // std::cout << images->images_.size() << std::endl;
     
-    // std::cout << ops->getRandom() << std::endl;
-    std::cout << images->images_.size() << std::endl;
-    // std::cout << images->images_[0]->encodeByte() << std::endl;
-    // images->images_[0]->grayscale_lum();
-    
-    // ops->grayscale_avg();
-    
-    // ops->write("gray.png");
 
-
-    delete ops;
-    delete images;
+    delete state;
 
 }
