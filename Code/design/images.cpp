@@ -4,15 +4,14 @@
 
 class Images {
     private:
-     
-     ImageOperations* ops_;
+        ImageOperations* ops_;
 
-     public:
-
-     std::vector<Image *> images_;
+    public:
+    
+        std::vector<Image *> images_;
      
-        Images(ImageOperations* img_ops) {
-            this->ops_ = img_ops;
+        Images(ImageOperations* ops) {
+            this->ops_ = ops;
         }
 
         ~Images() {
@@ -25,13 +24,15 @@ class Images {
 
         void undo() {
             if (!this->images_.size()) {
-            return;
-        }
+                std::cout << "Size not good" << std::endl;
+                return;
+            }
             Image *image = this->images_.back();
             this->images_.pop_back();
             try {
                 this->ops_->restore(image);
             } catch (...) {
+                std::cout << "Exception occured" << std::endl;
                 this->undo();
             }
         };

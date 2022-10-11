@@ -9,9 +9,6 @@
 
 
 
-
-
-
 int main() {
 
     std::ifstream myfile ("base64/jpg2.txt");
@@ -24,21 +21,37 @@ int main() {
     char* buffer = (char*)malloc(sizeof(char) * len);
     strcpy(buffer, mystring.c_str());
 
-    Image* img = new ConcreteImage(buffer);
-    //img->grayscale_avg();
-    // std::cout << img->encodeByte();
-    ImageOperations* ops = new ImageOperations(*img);
+
+    ImageOperations* ops = new ImageOperations(buffer);
     Images* images = new Images(ops);
+    
     images->Backup();
-    std::cout << images->images_.size() << std::endl;
     ops->grayscale_avg();
     ops->write("gray.png");
     images->undo();
-    std::cout << images->images_.size() << std::endl;
     ops->write("original.png");
+    images->Backup();
+    ops->grayscale_avg();
+    ops->write("gray2.png");
+    images->undo();
+    ops->write("original2.png");
+    // images->Backup();
+   
+   
+    // images->undo();
+    // std::cout << ops->getRandom() << std::endl;
+    
+    // std::cout << ops->getRandom() << std::endl;
+    std::cout << images->images_.size() << std::endl;
+    // std::cout << images->images_[0]->encodeByte() << std::endl;
+    // images->images_[0]->grayscale_lum();
+    
+    // ops->grayscale_avg();
+    
+    // ops->write("gray.png");
+
 
     delete ops;
     delete images;
-    delete img;
 
 }

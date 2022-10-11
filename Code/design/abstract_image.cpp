@@ -10,6 +10,9 @@
 #include "stb_image.h"
 #include "stb_image_write.h"
 #include "base64.cpp"
+#include<cstdlib>
+
+
 
 const unsigned long STEG_HEADER_SIZE = sizeof(uint32_t) * 8;
 
@@ -23,6 +26,11 @@ class Image
 {
         
     public:
+
+        Image(int w, int h, int channels) : w(w), h(h), channels(channels) {}
+
+        Image(const Image& img) : Image(img.w, img.h, img.channels) {}
+
         Image(char* input) {}
 
         Image() {
@@ -34,8 +42,10 @@ class Image
         virtual ~Image() {
             stbi_image_free(data);
         }
+        
+        
 
-        virtual Image& state() const = 0;
+        virtual Image* state() const = 0;
 
         virtual void grayscale_avg() const = 0;
 
@@ -54,12 +64,14 @@ class Image
         virtual Type getFileType(const char* filename) = 0;
 
 
-        
-    protected:
+
+    // protected:
         uint8_t* data = NULL;
         size_t size = 0;
         int w;
         int h;
         int channels;
+        int random;
+        
 
 };

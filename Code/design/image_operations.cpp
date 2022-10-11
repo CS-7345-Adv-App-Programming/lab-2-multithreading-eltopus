@@ -1,5 +1,9 @@
 #pragma once
 #include "concrete_image.cpp"
+#include<cstdlib>
+#include <ctime>
+#include <iostream>
+
 
 class ImageOperations {
     private:
@@ -7,8 +11,8 @@ class ImageOperations {
 
     public:
 
-        ImageOperations (Image& image){
-            this->state_ = &image;
+        ImageOperations (char* buffer){
+            this->state_= new ConcreteImage(buffer);
         }
       
         Image* getState() {
@@ -45,12 +49,24 @@ class ImageOperations {
         }
 
         Image *save() {
-            return new ConcreteImage(*this->state_);
+            std::cout << "old image address: " << &this->state_ << std::endl;
+            Image* newState = new ConcreteImage(this->state_);
+            this->state_ = newState;
+            std::cout << "new image address: " << &newState << std::endl;
+            return newState;
         }
 
         void restore(Image* image) {
-            this->state_ = &image->state();
+            this->state_ = image->state();
+            std::cout << "restored old image address: " << &this->state_ << std::endl;
+            
         }
+
+        char* getAddress () {
+            return (char*)(&this->state_);
+        }
+
+        
 
 
 

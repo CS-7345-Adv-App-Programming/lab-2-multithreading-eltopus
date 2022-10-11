@@ -5,26 +5,6 @@
 
 class ConcreteImage: public Image {
    
-        
-    public:
-        ConcreteImage(char* input){
-            std::string input_str = input;
-            std::string decoded_data = base64_decode(input_str);
-            std::vector<char> img_data(decoded_data.begin(), decoded_data.end());
-            loadFromMemory(img_data);
-            this->state_ = this;
-        
-        }
-
-        ConcreteImage(Image& img){
-            this->state_ = &img;
-            
-        }
-
-        Image& state() const override {
-            return *this->state_;
-
-        }
 
      private:
         Image* state_;
@@ -35,13 +15,12 @@ class ConcreteImage: public Image {
         }
         
         char* encodeByte() const override {
-            std:: cout << w << " " << h << " " << size << std::endl;
             int len;
             unsigned char *imageData = stbi_write_png_to_mem((const unsigned char *) data, w*channels, w, h, channels, &len);
             //STBIW_FREE(png);
             std::string enc = base64_encode(imageData, len);
             char* buffer = (char*)malloc(sizeof(char) * len);
-            std:: cout << len << std::endl;
+            // std:: cout << len << std::endl;
             strncpy(buffer, enc.c_str(), len-1);
             buffer[len-1] = '\0';
             
@@ -171,6 +150,45 @@ class ConcreteImage: public Image {
         return success != 0;
 
     }
+
+    public:
+        ConcreteImage(char* input){
+            std::string input_str = input;
+            std::string decoded_data = base64_decode(input_str);
+            std::vector<char> img_data(decoded_data.begin(), decoded_data.end());
+            loadFromMemory(img_data);
+            this->state_ = this;
+        
+        }
+
+        ConcreteImage(Image* imageState){
+            this->state_ = imageState;
+            
+        }
+
+        ConcreteImage(Image& imageState){
+            this->state_ = &imageState;
+            
+        }
+
+        ConcreteImage(int w, int h, int channels) {
+            this->w = w;
+            this->h = h;
+            this->channels = channels;
+            this->size = w*h*channels;
+            this->data = new uint8_t[size];
+        }
+
+
+        ConcreteImage(const Image& img) : ConcreteImage(img.w, img.h, img.channels) {
+            memcpy(data, img.data, size);
+        }
+
+        Image* state() const override {
+            return this->state_;
+
+        }
+        
         
 
 };
