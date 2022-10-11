@@ -132,19 +132,12 @@ main/fast:
 main.o: main.cpp.o
 .PHONY : main.o
 
-# target to build an object fileCMAKE_BINARY_DIR = /home/kali/lab-1-emscripten-eltopus/Code/build
+# target to build an object file
+main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.cpp.o
+.PHONY : main.cpp.o
 
-MATRIX_CPP = /home/kali/lab-1-emscripten-eltopus/Code/matrix.cpp
-WASM_OUTPUT = /home/kali/lab-1-emscripten-eltopus/Code/output
-WASM_WASM = /home/kali/lab-1-emscripten-eltopus/Code/output.wasm
-MATRIX_GLUE_WRAPPER = /home/kali/lab-1-emscripten-eltopus/Code/matrix_glue_wrapper.cpp
-MATRIX_GLUE = /home/kali/lab-1-emscripten-eltopus/Code/glue.cpp
-NODE = /home/kali/lab-1-emscripten-eltopus/Code/app.js
-OUTPUT_JS = /home/kali/lab-1-emscripten-eltopus/Code/output.js
-GLUE_JS = /home/kali/lab-1-emscripten-eltopus/Code/glue.js
-EMSDK_ROOT_FOLDER = /home/kali/emsdk/upstream/emscripten
-REPO_CODE_DIR = /home/kali/lab-1-emscripten-eltopus/Code
-
+main.i: main.cpp.i
 .PHONY : main.i
 
 # target to preprocess a source file
@@ -171,14 +164,9 @@ help:
 	@echo "... main"
 	@echo "... main.o"
 	@echo "... main.i"
-	@echo "... main.s"CMAKE_BINARY_DIR = /home/kali/lab-1-emscripten-eltopus/Code/build
+	@echo "... main.s"
+.PHONY : help
 
-IMAGE_CPP = /home/kali/LABS/lab-2-multithreading-eltopus/Code/image.cpp
-IMAGE_GLUE_WRAPPER = /home/kali/LABS/lab-2-multithreading-eltopus/Code/image_glue_wrapper.cpp
-OUTPUT_JS = /home/kali/LABS/lab-2-multithreading-eltopus/Code/output.js
-GLUE_JS = /home/kali/LABS/lab-2-multithreading-eltopus/Code/glue.js
-EMSDK_ROOT_FOLDER = /home/kali/emsdk/upstream/emscripten
-REPO_CODE_DIR = /home/kali/LABS/lab-2-multithreading-eltopus/Code
 
 
 #=============================================================================
@@ -191,12 +179,16 @@ cmake_check_build_system:
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 
-compile:
-	$(SHELL source ./home/kali/emsdk/emsdk_env.sh)
-	emcc $(CMAKE_SOURCE_DIR)/main.cpp -o $(CMAKE_BINARY_DIR)/image
+IMAGE_CPP = /home/kali/LABS/lab-2-multithreading-eltopus/Code/originator.cpp
+IMAGE_GLUE_WRAPPER = /home/kali/LABS/lab-2-multithreading-eltopus/Code/image_glue_wrapper.cpp
+OUTPUT_JS = /home/kali/LABS/lab-2-multithreading-eltopus/Code/output.js
+GLUE_JS = /home/kali/LABS/lab-2-multithreading-eltopus/Code/glue.js
+EMSDK_ROOT_FOLDER = /home/kali/emsdk/upstream/emscripten
+REPO_CODE_DIR = /home/kali/LABS/lab-2-multithreading-eltopus/Code
 
 glue:
 	python3 $(EMSDK_ROOT_FOLDER)/tools/webidl_binder.py $(REPO_CODE_DIR)/image_classes.idl $(REPO_CODE_DIR)/glue
 
 build:
 	emcc $(IMAGE_CPP) $(IMAGE_GLUE_WRAPPER) --post-js $(GLUE_JS) -O1 -o $(OUTPUT_JS) -s ALLOW_MEMORY_GROWTH=1 -s EXPORTED_RUNTIME_METHODS=["ccall, cwrap"]
+

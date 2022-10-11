@@ -151,48 +151,50 @@ CMakeFiles/main.dir/main.cpp.o: /home/kali/LABS/lab-2-multithreading-eltopus/Cod
   /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
   /usr/include/c++/11/bits/charconv.h \
   /usr/include/c++/11/bits/basic_string.tcc \
+  /usr/include/c++/11/fstream \
+  /usr/include/c++/11/istream \
+  /usr/include/c++/11/ios \
+  /usr/include/c++/11/exception \
+  /usr/include/c++/11/bits/exception_ptr.h \
+  /usr/include/c++/11/bits/cxxabi_init_exception.h \
+  /usr/include/c++/11/typeinfo \
+  /usr/include/c++/11/bits/nested_exception.h \
+  /usr/include/c++/11/bits/ios_base.h \
+  /usr/include/c++/11/bits/locale_classes.h \
+  /usr/include/c++/11/bits/locale_classes.tcc \
+  /usr/include/c++/11/system_error \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/error_constants.h \
+  /usr/include/c++/11/stdexcept \
+  /usr/include/c++/11/streambuf \
+  /usr/include/c++/11/bits/streambuf.tcc \
+  /usr/include/c++/11/bits/basic_ios.h \
+  /usr/include/c++/11/bits/locale_facets.h \
+  /usr/include/c++/11/cwctype \
+  /usr/include/wctype.h \
+  /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h \
+  /usr/include/c++/11/bits/streambuf_iterator.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h \
+  /usr/include/c++/11/bits/locale_facets.tcc \
+  /usr/include/c++/11/bits/basic_ios.tcc \
+  /usr/include/c++/11/ostream \
+  /usr/include/c++/11/bits/ostream.tcc \
+  /usr/include/c++/11/bits/istream.tcc \
+  /usr/include/c++/11/bits/codecvt.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
+  /usr/include/c++/11/bits/fstream.tcc \
+  /usr/include/c++/11/iostream \
+  /home/kali/LABS/lab-2-multithreading-eltopus/Code/image_operations.cpp \
+  /home/kali/LABS/lab-2-multithreading-eltopus/Code/concrete_image.cpp \
+  /usr/include/c++/11/stdlib.h \
+  /home/kali/LABS/lab-2-multithreading-eltopus/Code/abstract_image.cpp \
   /usr/include/c++/11/vector \
   /usr/include/c++/11/bits/stl_uninitialized.h \
   /usr/include/c++/11/bits/stl_vector.h \
   /usr/include/c++/11/bits/stl_bvector.h \
   /usr/include/c++/11/bits/vector.tcc \
-  /home/kali/LABS/lab-2-multithreading-eltopus/Code/image.cpp \
-  /home/kali/LABS/lab-2-multithreading-eltopus/Code/base64.cpp \
-  /home/kali/LABS/lab-2-multithreading-eltopus/Code/base64.h \
-  /usr/include/c++/11/algorithm \
-  /usr/include/c++/11/utility \
-  /usr/include/c++/11/bits/stl_relops.h \
-  /usr/include/c++/11/bits/stl_algo.h \
-  /usr/include/c++/11/bits/algorithmfwd.h \
-  /usr/include/c++/11/bits/stl_heap.h \
-  /usr/include/c++/11/bits/stl_tempbuf.h \
-  /usr/include/c++/11/bits/uniform_int_dist.h \
-  /usr/include/c++/11/pstl/glue_algorithm_defs.h \
-  /usr/include/c++/11/functional \
-  /usr/include/c++/11/tuple \
-  /usr/include/c++/11/array \
-  /usr/include/c++/11/bits/uses_allocator.h \
-  /usr/include/c++/11/bits/invoke.h \
-  /usr/include/c++/11/bits/refwrap.h \
-  /usr/include/c++/11/bits/std_function.h \
-  /usr/include/c++/11/typeinfo \
-  /usr/include/c++/11/unordered_map \
-  /usr/include/c++/11/ext/aligned_buffer.h \
-  /usr/include/c++/11/bits/hashtable.h \
-  /usr/include/c++/11/bits/hashtable_policy.h \
-  /usr/include/c++/11/bits/enable_special_members.h \
-  /usr/include/c++/11/bits/node_handle.h \
-  /usr/include/c++/11/bits/unordered_map.h \
-  /usr/include/c++/11/bits/erase_if.h \
-  /usr/include/c++/11/pstl/execution_defs.h \
-  /usr/include/c++/11/stdexcept \
-  /usr/include/c++/11/exception \
-  /usr/include/c++/11/bits/exception_ptr.h \
-  /usr/include/c++/11/bits/cxxabi_init_exception.h \
-  /usr/include/c++/11/bits/nested_exception.h \
-  /home/kali/LABS/lab-2-multithreading-eltopus/Code/image.h \
   /home/kali/LABS/lab-2-multithreading-eltopus/Code/stb_image.h \
-  /usr/include/c++/11/stdlib.h \
   /usr/include/string.h \
   /usr/include/strings.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h \
@@ -236,135 +238,51 @@ CMakeFiles/main.dir/main.cpp.o: /home/kali/LABS/lab-2-multithreading-eltopus/Cod
   /usr/lib/gcc/x86_64-linux-gnu/11/include/mmintrin.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/mm_malloc.h \
   /home/kali/LABS/lab-2-multithreading-eltopus/Code/stb_image_write.h \
-  /usr/include/c++/11/iostream \
-  /usr/include/c++/11/ostream \
-  /usr/include/c++/11/ios \
-  /usr/include/c++/11/bits/ios_base.h \
-  /usr/include/c++/11/bits/locale_classes.h \
-  /usr/include/c++/11/bits/locale_classes.tcc \
-  /usr/include/c++/11/system_error \
-  /usr/include/x86_64-linux-gnu/c++/11/bits/error_constants.h \
-  /usr/include/c++/11/streambuf \
-  /usr/include/c++/11/bits/streambuf.tcc \
-  /usr/include/c++/11/bits/basic_ios.h \
-  /usr/include/c++/11/bits/locale_facets.h \
-  /usr/include/c++/11/cwctype \
-  /usr/include/wctype.h \
-  /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
-  /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h \
-  /usr/include/c++/11/bits/streambuf_iterator.h \
-  /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h \
-  /usr/include/c++/11/bits/locale_facets.tcc \
-  /usr/include/c++/11/bits/basic_ios.tcc \
-  /usr/include/c++/11/bits/ostream.tcc \
-  /usr/include/c++/11/istream \
-  /usr/include/c++/11/bits/istream.tcc \
-  /home/kali/LABS/lab-2-multithreading-eltopus/Code/images.cpp \
-  /usr/include/c++/11/random \
-  /usr/include/c++/11/bits/random.h \
-  /usr/include/x86_64-linux-gnu/c++/11/bits/opt_random.h \
-  /usr/include/c++/11/bits/random.tcc \
-  /usr/include/c++/11/numeric \
-  /usr/include/c++/11/bits/stl_numeric.h \
-  /usr/include/c++/11/bit \
-  /usr/include/c++/11/pstl/glue_numeric_defs.h \
-  /usr/include/c++/11/fstream \
-  /usr/include/c++/11/bits/codecvt.h \
-  /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
-  /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
-  /usr/include/c++/11/bits/fstream.tcc \
-  /usr/include/c++/11/filesystem \
-  /usr/include/c++/11/bits/fs_fwd.h \
-  /usr/include/c++/11/chrono \
-  /usr/include/c++/11/ratio \
-  /usr/include/c++/11/ctime \
-  /usr/include/c++/11/bits/parse_numbers.h \
-  /usr/include/c++/11/bits/fs_path.h \
-  /usr/include/c++/11/locale \
-  /usr/include/c++/11/bits/locale_facets_nonio.h \
-  /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \
-  /usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h \
-  /usr/include/libintl.h \
-  /usr/include/c++/11/bits/locale_facets_nonio.tcc \
-  /usr/include/c++/11/bits/locale_conv.h \
-  /usr/include/c++/11/bits/unique_ptr.h \
-  /usr/include/c++/11/iomanip \
-  /usr/include/c++/11/bits/quoted_string.h \
-  /usr/include/c++/11/sstream \
-  /usr/include/c++/11/bits/sstream.tcc \
-  /usr/include/c++/11/codecvt \
-  /usr/include/c++/11/ext/concurrence.h \
-  /usr/include/c++/11/bits/shared_ptr.h \
-  /usr/include/c++/11/bits/shared_ptr_base.h \
-  /usr/include/c++/11/bits/allocated_ptr.h \
-  /usr/include/c++/11/bits/fs_dir.h \
-  /usr/include/c++/11/bits/fs_ops.h \
-  /usr/include/c++/11/bitset
+  /home/kali/LABS/lab-2-multithreading-eltopus/Code/base64.cpp \
+  /home/kali/LABS/lab-2-multithreading-eltopus/Code/base64.h \
+  /usr/include/c++/11/algorithm \
+  /usr/include/c++/11/utility \
+  /usr/include/c++/11/bits/stl_relops.h \
+  /usr/include/c++/11/bits/stl_algo.h \
+  /usr/include/c++/11/bits/algorithmfwd.h \
+  /usr/include/c++/11/bits/stl_heap.h \
+  /usr/include/c++/11/bits/stl_tempbuf.h \
+  /usr/include/c++/11/bits/uniform_int_dist.h \
+  /usr/include/c++/11/pstl/glue_algorithm_defs.h \
+  /usr/include/c++/11/functional \
+  /usr/include/c++/11/tuple \
+  /usr/include/c++/11/array \
+  /usr/include/c++/11/bits/uses_allocator.h \
+  /usr/include/c++/11/bits/invoke.h \
+  /usr/include/c++/11/bits/refwrap.h \
+  /usr/include/c++/11/bits/std_function.h \
+  /usr/include/c++/11/unordered_map \
+  /usr/include/c++/11/ext/aligned_buffer.h \
+  /usr/include/c++/11/bits/hashtable.h \
+  /usr/include/c++/11/bits/hashtable_policy.h \
+  /usr/include/c++/11/bits/enable_special_members.h \
+  /usr/include/c++/11/bits/node_handle.h \
+  /usr/include/c++/11/bits/unordered_map.h \
+  /usr/include/c++/11/bits/erase_if.h \
+  /usr/include/c++/11/pstl/execution_defs.h \
+  /home/kali/LABS/lab-2-multithreading-eltopus/Code/states.cpp
 
 
-/usr/include/c++/11/bitset:
+/home/kali/LABS/lab-2-multithreading-eltopus/Code/states.cpp:
 
-/usr/include/c++/11/bits/fs_ops.h:
+/usr/include/c++/11/bits/unordered_map.h:
 
-/usr/include/c++/11/bits/fs_dir.h:
+/usr/include/c++/11/bits/hashtable_policy.h:
 
-/usr/include/c++/11/bits/allocated_ptr.h:
-
-/usr/include/c++/11/ext/concurrence.h:
-
-/usr/include/c++/11/sstream:
-
-/usr/include/c++/11/bits/quoted_string.h:
-
-/usr/include/c++/11/bits/unique_ptr.h:
-
-/usr/include/c++/11/bits/locale_conv.h:
-
-/usr/include/c++/11/bits/locale_facets_nonio.tcc:
-
-/usr/include/libintl.h:
-
-/usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h:
-
-/usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h:
-
-/usr/include/c++/11/bits/parse_numbers.h:
-
-/usr/include/c++/11/ctime:
-
-/usr/include/c++/11/ratio:
-
-/usr/include/c++/11/filesystem:
-
-/usr/include/c++/11/bits/fstream.tcc:
-
-/usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h:
-
-/usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h:
-
-/usr/include/c++/11/fstream:
-
-/usr/include/c++/11/bit:
-
-/usr/include/c++/11/bits/stl_numeric.h:
-
-/usr/include/c++/11/numeric:
-
-/usr/include/c++/11/bits/random.h:
-
-/usr/include/c++/11/random:
-
-/home/kali/LABS/lab-2-multithreading-eltopus/Code/images.cpp:
-
-/usr/include/c++/11/bits/istream.tcc:
+/usr/include/c++/11/bits/hashtable.h:
 
 /usr/include/stdlib.h:
 
 /usr/include/c++/11/bits/string_view.tcc:
 
-/usr/include/c++/11/bits/functional_hash.h:
+/home/kali/LABS/lab-2-multithreading-eltopus/Code/concrete_image.cpp:
 
-/usr/include/c++/11/bits/shared_ptr.h:
+/usr/include/c++/11/bits/functional_hash.h:
 
 /usr/include/c++/11/bits/stl_construct.h:
 
@@ -372,9 +290,9 @@ CMakeFiles/main.dir/main.cpp.o: /home/kali/LABS/lab-2-multithreading-eltopus/Cod
 
 /usr/include/c++/11/bits/cxxabi_forced.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
+/usr/include/c++/11/fstream:
 
-/usr/include/c++/11/bits/locale_facets_nonio.h:
+/usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
 
 /home/kali/LABS/lab-2-multithreading-eltopus/Code/stb_image.h:
 
@@ -434,8 +352,6 @@ CMakeFiles/main.dir/main.cpp.o: /home/kali/LABS/lab-2-multithreading-eltopus/Cod
 
 /usr/include/c++/11/tr1/modified_bessel_func.tcc:
 
-/usr/include/c++/11/pstl/glue_numeric_defs.h:
-
 /usr/include/x86_64-linux-gnu/bits/locale.h:
 
 /usr/include/locale.h:
@@ -454,21 +370,13 @@ CMakeFiles/main.dir/main.cpp.o: /home/kali/LABS/lab-2-multithreading-eltopus/Cod
 
 /usr/include/x86_64-linux-gnu/bits/uintn-identity.h:
 
-/usr/include/c++/11/bits/fs_path.h:
-
-/usr/include/c++/11/bits/random.tcc:
-
 /usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
-
-/usr/include/c++/11/locale:
 
 /usr/include/ctype.h:
 
 /usr/include/c++/11/bits/cpp_type_traits.h:
 
 /usr/include/c++/11/bits/stl_iterator_base_funcs.h:
-
-/usr/include/c++/11/bits/unordered_map.h:
 
 /usr/include/c++/11/ext/alloc_traits.h:
 
@@ -486,6 +394,8 @@ CMakeFiles/main.dir/main.cpp.o: /home/kali/LABS/lab-2-multithreading-eltopus/Cod
 
 /usr/include/x86_64-linux-gnu/bits/waitstatus.h:
 
+/home/kali/LABS/lab-2-multithreading-eltopus/Code/abstract_image.cpp:
+
 /usr/include/c++/11/tr1/special_function_util.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/gthr.h:
@@ -495,8 +405,6 @@ CMakeFiles/main.dir/main.cpp.o: /home/kali/LABS/lab-2-multithreading-eltopus/Cod
 /usr/include/c++/11/streambuf:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/c++locale.h:
-
-/usr/include/x86_64-linux-gnu/bits/xopen_lim.h:
 
 /usr/include/c++/11/bits/stl_algobase.h:
 
@@ -548,9 +456,9 @@ CMakeFiles/main.dir/main.cpp.o: /home/kali/LABS/lab-2-multithreading-eltopus/Cod
 
 /usr/include/x86_64-linux-gnu/bits/wchar.h:
 
-/home/kali/LABS/lab-2-multithreading-eltopus/Code/base64.h:
-
 /usr/include/x86_64-linux-gnu/bits/local_lim.h:
+
+/home/kali/LABS/lab-2-multithreading-eltopus/Code/base64.h:
 
 /usr/include/x86_64-linux-gnu/sys/select.h:
 
@@ -561,8 +469,6 @@ CMakeFiles/main.dir/main.cpp.o: /home/kali/LABS/lab-2-multithreading-eltopus/Cod
 /usr/include/x86_64-linux-gnu/bits/types.h:
 
 /usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
-
-/usr/include/c++/11/chrono:
 
 /usr/include/x86_64-linux-gnu/bits/wordsize.h:
 
@@ -616,8 +522,6 @@ CMakeFiles/main.dir/main.cpp.o: /home/kali/LABS/lab-2-multithreading-eltopus/Cod
 
 /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
 
-/usr/include/c++/11/bits/shared_ptr_base.h:
-
 /usr/include/c++/11/bits/basic_string.h:
 
 /usr/include/linux/limits.h:
@@ -632,7 +536,13 @@ CMakeFiles/main.dir/main.cpp.o: /home/kali/LABS/lab-2-multithreading-eltopus/Cod
 
 /usr/include/c++/11/bits/stl_iterator.h:
 
-/usr/include/c++/11/bits/sstream.tcc:
+/usr/include/c++/11/bits/erase_if.h:
+
+/usr/include/endian.h:
+
+/usr/include/stdint.h:
+
+/usr/include/c++/11/bits/ptr_traits.h:
 
 /usr/include/c++/11/new:
 
@@ -661,8 +571,6 @@ CMakeFiles/main.dir/main.cpp.o: /home/kali/LABS/lab-2-multithreading-eltopus/Cod
 /usr/include/c++/11/bits/predefined_ops.h:
 
 /usr/include/x86_64-linux-gnu/bits/typesizes.h:
-
-/usr/include/c++/11/iomanip:
 
 /usr/include/c++/11/cctype:
 
@@ -702,17 +610,97 @@ CMakeFiles/main.dir/main.cpp.o: /home/kali/LABS/lab-2-multithreading-eltopus/Cod
 
 /usr/include/c++/11/bits/basic_string.tcc:
 
-/usr/include/c++/11/vector:
+/usr/include/c++/11/istream:
 
-/usr/include/c++/11/bits/stl_uninitialized.h:
+/usr/include/c++/11/exception:
 
-/usr/include/c++/11/bits/stl_vector.h:
+/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:
+
+/usr/include/c++/11/typeinfo:
+
+/usr/include/c++/11/bits/nested_exception.h:
+
+/usr/include/c++/11/bits/ios_base.h:
+
+/usr/include/x86_64-linux-gnu/bits/fp-logb.h:
+
+/usr/include/c++/11/bits/locale_classes.h:
+
+/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
+
+/usr/include/c++/11/tr1/gamma.tcc:
+
+/usr/include/c++/11/bits/locale_classes.tcc:
+
+/usr/include/c++/11/bits/node_handle.h:
+
+/usr/include/c++/11/iostream:
+
+/usr/include/x86_64-linux-gnu/bits/fp-fast.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/mm_malloc.h:
 
 /usr/include/c++/11/system_error:
 
-/usr/include/c++/11/bits/fs_fwd.h:
+/usr/include/c++/11/bits/stl_vector.h:
+
+/usr/include/c++/11/ios:
+
+/usr/include/c++/11/utility:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/error_constants.h:
+
+/usr/include/c++/11/pstl/glue_algorithm_defs.h:
+
+/usr/include/c++/11/stdexcept:
+
+/usr/include/c++/11/tr1/bessel_function.tcc:
+
+/usr/include/c++/11/bits/uniform_int_dist.h:
+
+/usr/include/c++/11/bits/basic_ios.h:
+
+/usr/include/c++/11/bits/exception.h:
+
+/usr/include/c++/11/bits/locale_facets.h:
+
+/usr/include/c++/11/tr1/poly_hermite.tcc:
+
+/usr/include/c++/11/cwctype:
+
+/usr/include/c++/11/bits/streambuf_iterator.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
+
+/usr/include/c++/11/bits/locale_facets.tcc:
+
+/usr/include/c++/11/bits/enable_special_members.h:
+
+/usr/include/c++/11/bits/codecvt.h:
+
+/usr/include/c++/11/bits/basic_ios.tcc:
+
+/usr/include/c++/11/ostream:
+
+/usr/include/c++/11/bits/istream.tcc:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h:
+
+/usr/include/c++/11/bits/fstream.tcc:
+
+/usr/include/x86_64-linux-gnu/bits/xopen_lim.h:
+
+/home/kali/LABS/lab-2-multithreading-eltopus/Code/image_operations.cpp:
+
+/usr/include/c++/11/stdlib.h:
+
+/usr/include/c++/11/vector:
+
+/usr/include/c++/11/bits/stl_uninitialized.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h:
 
@@ -722,11 +710,11 @@ CMakeFiles/main.dir/main.cpp.o: /home/kali/LABS/lab-2-multithreading-eltopus/Cod
 
 /usr/include/c++/11/bits/vector.tcc:
 
-/usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
+/usr/include/c++/11/bits/streambuf.tcc:
 
-/usr/include/c++/11/bits/ostream_insert.h:
+/usr/include/string.h:
 
-/home/kali/LABS/lab-2-multithreading-eltopus/Code/base64.cpp:
+/usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h:
 
 /usr/include/c++/11/debug/debug.h:
 
@@ -734,59 +722,9 @@ CMakeFiles/main.dir/main.cpp.o: /home/kali/LABS/lab-2-multithreading-eltopus/Cod
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/syslimits.h:
 
-/usr/include/c++/11/bits/stl_algo.h:
-
-/usr/include/x86_64-linux-gnu/bits/math-vector.h:
-
-/usr/include/c++/11/pstl/execution_defs.h:
-
-/usr/include/c++/11/bits/algorithmfwd.h:
-
-/usr/include/c++/11/bits/std_abs.h:
-
-/usr/include/c++/11/bits/stl_heap.h:
-
-/usr/include/c++/11/bits/uses_allocator.h:
-
-/usr/include/c++/11/bits/refwrap.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:
-
-/usr/include/c++/11/typeinfo:
-
-/usr/include/c++/11/bits/hashtable.h:
-
-/usr/include/c++/11/bits/hashtable_policy.h:
-
-/usr/include/endian.h:
-
-/usr/include/stdint.h:
-
-/usr/include/c++/11/bits/ptr_traits.h:
-
-/usr/include/c++/11/bits/erase_if.h:
-
-/usr/include/c++/11/pstl/glue_algorithm_defs.h:
-
-/usr/include/c++/11/stdexcept:
-
-/home/kali/LABS/lab-2-multithreading-eltopus/Code/image.cpp:
-
-/usr/include/c++/11/exception:
-
-/usr/include/c++/11/bits/nested_exception.h:
-
-/usr/include/c++/11/tr1/riemann_zeta.tcc:
-
-/home/kali/LABS/lab-2-multithreading-eltopus/Code/image.h:
-
-/usr/include/c++/11/stdlib.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h:
+/usr/include/limits.h:
 
 /usr/include/c++/11/bits/stl_relops.h:
-
-/usr/include/limits.h:
 
 /usr/include/x86_64-linux-gnu/bits/posix1_lim.h:
 
@@ -798,6 +736,10 @@ CMakeFiles/main.dir/main.cpp.o: /home/kali/LABS/lab-2-multithreading-eltopus/Cod
 
 /usr/include/math.h:
 
+/usr/include/x86_64-linux-gnu/bits/math-vector.h:
+
+/usr/include/c++/11/bits/stl_algo.h:
+
 /usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h:
 
 /usr/include/c++/11/string_view:
@@ -807,18 +749,6 @@ CMakeFiles/main.dir/main.cpp.o: /home/kali/LABS/lab-2-multithreading-eltopus/Cod
 /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h:
 
 /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h:
-
-/usr/include/x86_64-linux-gnu/bits/fp-logb.h:
-
-/usr/include/c++/11/bits/ios_base.h:
-
-/usr/include/c++/11/iostream:
-
-/usr/include/c++/11/bits/node_handle.h:
-
-/usr/include/x86_64-linux-gnu/bits/fp-fast.h:
-
-/usr/include/c++/11/bits/locale_classes.tcc:
 
 /usr/include/x86_64-linux-gnu/bits/mathcalls.h:
 
@@ -832,35 +762,13 @@ CMakeFiles/main.dir/main.cpp.o: /home/kali/LABS/lab-2-multithreading-eltopus/Cod
 
 /usr/include/c++/11/limits:
 
-/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
-
-/usr/include/c++/11/tr1/gamma.tcc:
-
-/usr/include/c++/11/bits/locale_classes.h:
-
-/usr/include/c++/11/tr1/bessel_function.tcc:
-
-/usr/include/c++/11/codecvt:
-
-/usr/include/string.h:
-
-/usr/include/c++/11/bits/streambuf.tcc:
-
-/usr/include/c++/11/array:
-
-/usr/include/c++/11/tr1/beta_function.tcc:
-
 /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h:
 
 /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h:
 
 /usr/include/c++/11/tr1/legendre_function.tcc:
 
-/usr/include/c++/11/tr1/poly_hermite.tcc:
-
-/usr/include/c++/11/bits/exception.h:
-
-/usr/include/c++/11/bits/locale_facets.h:
+/usr/include/c++/11/tr1/riemann_zeta.tcc:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/emmintrin.h:
 
@@ -868,34 +776,24 @@ CMakeFiles/main.dir/main.cpp.o: /home/kali/LABS/lab-2-multithreading-eltopus/Cod
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/mmintrin.h:
 
-/usr/include/c++/11/ostream:
+/usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
 
-/usr/include/c++/11/ios:
+/usr/include/c++/11/bits/ostream_insert.h:
 
-/usr/include/c++/11/utility:
+/home/kali/LABS/lab-2-multithreading-eltopus/Code/base64.cpp:
 
-/usr/include/x86_64-linux-gnu/c++/11/bits/error_constants.h:
+/usr/include/c++/11/pstl/execution_defs.h:
 
-/usr/include/c++/11/bits/uniform_int_dist.h:
+/usr/include/c++/11/bits/algorithmfwd.h:
 
-/usr/include/c++/11/bits/basic_ios.h:
+/usr/include/c++/11/bits/std_abs.h:
 
-/usr/include/c++/11/cwctype:
+/usr/include/c++/11/bits/stl_heap.h:
 
-/usr/include/c++/11/bits/streambuf_iterator.h:
+/usr/include/c++/11/tr1/beta_function.tcc:
 
-/usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h:
+/usr/include/c++/11/array:
 
-/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
+/usr/include/c++/11/bits/uses_allocator.h:
 
-/usr/include/c++/11/bits/locale_facets.tcc:
-
-/usr/include/c++/11/bits/codecvt.h:
-
-/usr/include/x86_64-linux-gnu/c++/11/bits/opt_random.h:
-
-/usr/include/c++/11/bits/enable_special_members.h:
-
-/usr/include/c++/11/bits/basic_ios.tcc:
-
-/usr/include/c++/11/istream:
+/usr/include/c++/11/bits/refwrap.h:
