@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/kali/LABS/lab-2-multithreading-eltopus/Code/image.cpp" "CMakeFiles/main.dir/image.cpp.o" "gcc" "CMakeFiles/main.dir/image.cpp.o.d"
   "/home/kali/LABS/lab-2-multithreading-eltopus/Code/main.cpp" "CMakeFiles/main.dir/main.cpp.o" "gcc" "CMakeFiles/main.dir/main.cpp.o.d"
   )
 

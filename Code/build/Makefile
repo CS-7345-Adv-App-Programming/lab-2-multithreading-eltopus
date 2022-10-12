@@ -129,6 +129,30 @@ main/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
 .PHONY : main/fast
 
+image.o: image.cpp.o
+.PHONY : image.o
+
+# target to build an object file
+image.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/image.cpp.o
+.PHONY : image.cpp.o
+
+image.i: image.cpp.i
+.PHONY : image.i
+
+# target to preprocess a source file
+image.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/image.cpp.i
+.PHONY : image.cpp.i
+
+image.s: image.cpp.s
+.PHONY : image.s
+
+# target to generate assembly for a file
+image.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/image.cpp.s
+.PHONY : image.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -162,6 +186,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... main"
+	@echo "... image.o"
+	@echo "... image.i"
+	@echo "... image.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
@@ -179,16 +206,25 @@ cmake_check_build_system:
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 
-IMAGE_CPP = /home/kali/LABS/lab-2-multithreading-eltopus/Code/originator.cpp
+
+IMAGE_OPS = /home/kali/LABS/lab-2-multithreading-eltopus/Code/image_operations.cpp
+IMAGE_H = /home/kali/LABS/lab-2-multithreading-eltopus/Code/image.h
+IMAGE_CPP = /home/kali/LABS/lab-2-multithreading-eltopus/Code/image.cpp
+IMAGE_ORIGINATOR = /home/kali/LABS/lab-2-multithreading-eltopus/Code/originator.cpp
 IMAGE_GLUE_WRAPPER = /home/kali/LABS/lab-2-multithreading-eltopus/Code/image_glue_wrapper.cpp
 OUTPUT_JS = /home/kali/LABS/lab-2-multithreading-eltopus/Code/output.js
 GLUE_JS = /home/kali/LABS/lab-2-multithreading-eltopus/Code/glue.js
 EMSDK_ROOT_FOLDER = /home/kali/emsdk/upstream/emscripten
 REPO_CODE_DIR = /home/kali/LABS/lab-2-multithreading-eltopus/Code
+WASM_OUTPUT = /home/kali/LABS/lab-2-multithreading-eltopus/Code/output.wasm
+IMAGE_MAIN = /home/kali/LABS/lab-2-multithreading-eltopus/Code/main.cpp
 
 glue:
 	python3 $(EMSDK_ROOT_FOLDER)/tools/webidl_binder.py $(REPO_CODE_DIR)/image_classes.idl $(REPO_CODE_DIR)/glue
 
 build:
-	emcc $(IMAGE_CPP) $(IMAGE_GLUE_WRAPPER) --post-js $(GLUE_JS) -O1 -o $(OUTPUT_JS) -s ALLOW_MEMORY_GROWTH=1 -s EXPORTED_RUNTIME_METHODS=["ccall, cwrap"]
+	emcc $(IMAGE_OPS) $(IMAGE_CPP) $(IMAGE_GLUE_WRAPPER) --post-js $(GLUE_JS) -O1 -o $(OUTPUT_JS) -s ALLOW_MEMORY_GROWTH=1 -s EXPORTED_RUNTIME_METHODS=["ccall, cwrap"] 
 
+compile:
+	$(SHELL source ./home/kali/emsdk/emsdk_env.sh)
+	emcc  $(IMAGE_MAIN)  $(IMAGE_OPS) $(IMAGE_CPP) -o $(WASM_OUTPUT)
