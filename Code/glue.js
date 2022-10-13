@@ -197,31 +197,65 @@ Module['VoidPtr'] = VoidPtr;
   var self = this.ptr;
   _emscripten_bind_VoidPtr___destroy___0(self);
 };
-// Image
-/** @suppress {undefinedVars, duplicate} @this{Object} */function Image(base46Str) {
+// ImageOperations
+/** @suppress {undefinedVars, duplicate} @this{Object} */function ImageOperations(base46Str) {
   ensureCache.prepare();
   if (base46Str && typeof base46Str === 'object') base46Str = base46Str.ptr;
   else base46Str = ensureString(base46Str);
-  this.ptr = _emscripten_bind_Image_Image_1(base46Str);
-  getCache(Image)[this.ptr] = this;
+  this.ptr = _emscripten_bind_ImageOperations_ImageOperations_1(base46Str);
+  getCache(ImageOperations)[this.ptr] = this;
 };;
-Image.prototype = Object.create(WrapperObject.prototype);
-Image.prototype.constructor = Image;
-Image.prototype.__class__ = Image;
-Image.__cache__ = {};
-Module['Image'] = Image;
+ImageOperations.prototype = Object.create(WrapperObject.prototype);
+ImageOperations.prototype.constructor = ImageOperations;
+ImageOperations.prototype.__class__ = ImageOperations;
+ImageOperations.__cache__ = {};
+Module['ImageOperations'] = ImageOperations;
 
-Image.prototype['grayscale_avg'] = Image.prototype.grayscale_avg = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+ImageOperations.prototype['grayscale_avg'] = ImageOperations.prototype.grayscale_avg = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
   var self = this.ptr;
-  _emscripten_bind_Image_grayscale_avg_0(self);
-};;
-
-Image.prototype['encodeByte'] = Image.prototype.encodeByte = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
-  var self = this.ptr;
-  return UTF8ToString(_emscripten_bind_Image_encodeByte_0(self));
+  _emscripten_bind_ImageOperations_grayscale_avg_0(self);
 };;
 
-  Image.prototype['__destroy__'] = Image.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+ImageOperations.prototype['grayscale_lum'] = ImageOperations.prototype.grayscale_lum = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
   var self = this.ptr;
-  _emscripten_bind_Image___destroy___0(self);
+  _emscripten_bind_ImageOperations_grayscale_lum_0(self);
+};;
+
+ImageOperations.prototype['colorMask'] = ImageOperations.prototype.colorMask = /** @suppress {undefinedVars, duplicate} @this{Object} */function(r, g, b) {
+  var self = this.ptr;
+  if (r && typeof r === 'object') r = r.ptr;
+  if (g && typeof g === 'object') g = g.ptr;
+  if (b && typeof b === 'object') b = b.ptr;
+  _emscripten_bind_ImageOperations_colorMask_3(self, r, g, b);
+};;
+
+ImageOperations.prototype['encodeMessage'] = ImageOperations.prototype.encodeMessage = /** @suppress {undefinedVars, duplicate} @this{Object} */function(message) {
+  var self = this.ptr;
+  ensureCache.prepare();
+  if (message && typeof message === 'object') message = message.ptr;
+  else message = ensureString(message);
+  _emscripten_bind_ImageOperations_encodeMessage_1(self, message);
+};;
+
+ImageOperations.prototype['encodeByte'] = ImageOperations.prototype.encodeByte = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return UTF8ToString(_emscripten_bind_ImageOperations_encodeByte_0(self));
+};;
+
+ImageOperations.prototype['printBuffer'] = ImageOperations.prototype.printBuffer = /** @suppress {undefinedVars, duplicate} @this{Object} */function(buffer, buffer_length, operations, ops_length) {
+  var self = this.ptr;
+  ensureCache.prepare();
+  if (buffer_length && typeof buffer_length === 'object') buffer_length = buffer_length.ptr;
+  if (ops_length && typeof ops_length === 'object') ops_length = ops_length.ptr;
+  _emscripten_bind_ImageOperations_printBuffer_4(self, buffer, buffer_length, operations, ops_length);
+};;
+
+ImageOperations.prototype['Undo'] = ImageOperations.prototype.Undo = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _emscripten_bind_ImageOperations_Undo_0(self);
+};;
+
+  ImageOperations.prototype['__destroy__'] = ImageOperations.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _emscripten_bind_ImageOperations___destroy___0(self);
 };

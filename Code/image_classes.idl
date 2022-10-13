@@ -1,5 +1,14 @@
-interface Image {
-    void Image(DOMString base46Str);
+
+
+
+
+interface ImageOperations  {
+    void ImageOperations(DOMString base46Str);
     void grayscale_avg();
+    void grayscale_lum();
+    void colorMask(float r, float g, float b);
+    void encodeMessage(DOMString  message);
     DOMString encodeByte();
+    void printBuffer(DOMString[] buffer, long buffer_length, DOMString[] operations, long ops_length);
+    void Undo();
 };
