@@ -1,5 +1,5 @@
 #include <stddef.h>
-#include "image_operations.cpp"
+#include "image.h"
 #include "glue.cpp"
 
  

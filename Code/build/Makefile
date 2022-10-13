@@ -218,13 +218,17 @@ EMSDK_ROOT_FOLDER = /home/kali/emsdk/upstream/emscripten
 REPO_CODE_DIR = /home/kali/LABS/lab-2-multithreading-eltopus/Code
 WASM_OUTPUT = /home/kali/LABS/lab-2-multithreading-eltopus/Code/output.wasm
 IMAGE_MAIN = /home/kali/LABS/lab-2-multithreading-eltopus/Code/main.cpp
+NODE = /home/kali/LABS/lab-2-multithreading-eltopus/Code/app.js
 
 glue:
 	python3 $(EMSDK_ROOT_FOLDER)/tools/webidl_binder.py $(REPO_CODE_DIR)/image_classes.idl $(REPO_CODE_DIR)/glue
 
 build:
-	emcc $(IMAGE_OPS) $(IMAGE_CPP) $(IMAGE_GLUE_WRAPPER) --post-js $(GLUE_JS) -O1 -o $(OUTPUT_JS) -s ALLOW_MEMORY_GROWTH=1 -s EXPORTED_RUNTIME_METHODS=["ccall, cwrap"] 
+	emcc $(IMAGE_OPS) $(IMAGE_CPP) $(IMAGE_GLUE_WRAPPER) --post-js $(GLUE_JS) -O1 -o $(OUTPUT_JS) -s ALLOW_MEMORY_GROWTH=1 -s EXPORTED_RUNTIME_METHODS=["ccall, cwrap"] -s EXPORTED_FUNCTIONS=["_free"] 
 
 compile:
 	$(SHELL source ./home/kali/emsdk/emsdk_env.sh)
 	emcc  $(IMAGE_MAIN)  $(IMAGE_OPS) $(IMAGE_CPP) -o $(WASM_OUTPUT)
+
+node:
+	node $(NODE)

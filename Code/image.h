@@ -1,3 +1,4 @@
+
 #pragma once
 
 #ifndef IMAGE_H
@@ -9,42 +10,65 @@
 #include <string>
 #include <vector>
 
+
 const unsigned long STEG_HEADER_SIZE = sizeof(uint32_t) * 8;
 
-enum ImageType {
+enum Type {
     PNG, JPG, BMP, TGA
 };
 
+extern bool write(const char* filename);
 
 
 struct Image 
 {
+
+    Image(int w, int h, int channels);
+
+    Image(const Image& img);
+
+    Image(char* input);
+
+    Image() {
+
+    }
+
+    Image(Image& img);
+
+    Image(Image* imageState);
+
+     virtual ~Image();
+    
+
+    void grayscale_avg();
+
+    void grayscale_lum();
+    
+    void colorMask(float r, float g, float b);
+
+    void encodeMessage(const char* message);
+
+    void decodeMessage(char* buffer, size_t* messageLength);
+
+    bool write(const char* filename);
+
+    Type getFileType(const char* filename);
+
+    char* encodeByte();
+
+    void loadFromMemory(const std::vector<char> &img_data);
+    
+    
+
+
+// protected:
     uint8_t* data = NULL;
     size_t size = 0;
     int w;
     int h;
     int channels;
-    
-    // Image(const char* filename);
-    Image();
-    Image(char* input);
-    Image(int w, int h, int channels);
-    // Image(int w, int h, int channels, size_t size);
-    // Image(const Image& img);
-    ~Image();
-
-    bool read(const char* filename);
-    bool write(const char* filename);
-    void loadFromMemory(const std::vector<char> &img_data);
-
-    ImageType getFileType(const char* filename);
-    void grayscale_avg();
-    Image& grayscale_lum();
-    Image& colorMask(float r, float g, float b);
-    Image& encodeMessage(const char* message);
-    Image& decodeMessage(char* buffer, size_t* messageLength);
-    std::string decodeByte(const std::string input); 
-    char* encodeByte();
+    int random; 
+    Image* state_;  
 
 };
 

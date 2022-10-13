@@ -1,0 +1,5 @@
+interface Image {
+    void Image(DOMString base46Str);
+    void grayscale_avg();
+    DOMString encodeByte();
+};
