@@ -31,10 +31,6 @@ ImageOperations* EMSCRIPTEN_KEEPALIVE emscripten_bind_ImageOperations_ImageOpera
   return new ImageOperations(base46Str);
 }
 
-void EMSCRIPTEN_KEEPALIVE emscripten_bind_ImageOperations_createImage_1(ImageOperations* self, char* base46Str) {
-  self->createImage(base46Str);
-}
-
 void EMSCRIPTEN_KEEPALIVE emscripten_bind_ImageOperations_grayscale_avg_0(ImageOperations* self) {
   self->grayscale_avg();
 }
@@ -55,12 +51,36 @@ char* EMSCRIPTEN_KEEPALIVE emscripten_bind_ImageOperations_encodeByte_0(ImageOpe
   return self->encodeByte();
 }
 
-void EMSCRIPTEN_KEEPALIVE emscripten_bind_ImageOperations_printBuffer_4(ImageOperations* self, char** buffer, int buffer_length, char** operations, int ops_length) {
-  self->printBuffer(buffer, buffer_length, operations, ops_length);
-}
-
 void EMSCRIPTEN_KEEPALIVE emscripten_bind_ImageOperations_Undo_0(ImageOperations* self) {
   self->Undo();
+}
+
+void EMSCRIPTEN_KEEPALIVE emscripten_bind_ImageOperations_createImages_1(ImageOperations* self, char* base46Str) {
+  self->createImages(base46Str);
+}
+
+void EMSCRIPTEN_KEEPALIVE emscripten_bind_ImageOperations_grayscale_avgs_0(ImageOperations* self) {
+  self->grayscale_avgs();
+}
+
+void EMSCRIPTEN_KEEPALIVE emscripten_bind_ImageOperations_grayscale_lums_0(ImageOperations* self) {
+  self->grayscale_lums();
+}
+
+void EMSCRIPTEN_KEEPALIVE emscripten_bind_ImageOperations_colorMasks_3(ImageOperations* self, float r, float g, float b) {
+  self->colorMasks(r, g, b);
+}
+
+void EMSCRIPTEN_KEEPALIVE emscripten_bind_ImageOperations_encodeMessages_1(ImageOperations* self, char* message) {
+  self->encodeMessages(message);
+}
+
+char* EMSCRIPTEN_KEEPALIVE emscripten_bind_ImageOperations_encodeBytes_0(ImageOperations* self) {
+  return self->encodeBytes();
+}
+
+void EMSCRIPTEN_KEEPALIVE emscripten_bind_ImageOperations_Undos_0(ImageOperations* self) {
+  self->Undos();
 }
 
 void EMSCRIPTEN_KEEPALIVE emscripten_bind_ImageOperations___destroy___0(ImageOperations* self) {

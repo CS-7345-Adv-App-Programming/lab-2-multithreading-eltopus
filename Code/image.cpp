@@ -23,9 +23,9 @@ char* Image::encodeByte() {
     std::string enc = base64_encode(imageData, len);
     char* buffer = (char*)malloc(sizeof(char) * len);
     // std:: cout << len << std::endl;
-    strncpy(buffer, enc.c_str(), len-1);
-    // strcpy(buffer, enc.c_str());
-    buffer[len-1] = '\0';
+    // strncpy(buffer, enc.c_str(), len-1);
+    strcpy(buffer, enc.c_str());
+    // buffer[len-1] = '\0';
     
     return buffer;
 }

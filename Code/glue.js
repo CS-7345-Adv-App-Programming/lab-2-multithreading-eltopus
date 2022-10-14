@@ -212,14 +212,6 @@ ImageOperations.prototype.__class__ = ImageOperations;
 ImageOperations.__cache__ = {};
 Module['ImageOperations'] = ImageOperations;
 
-ImageOperations.prototype['createImage'] = ImageOperations.prototype.createImage = /** @suppress {undefinedVars, duplicate} @this{Object} */function(base46Str) {
-  var self = this.ptr;
-  ensureCache.prepare();
-  if (base46Str && typeof base46Str === 'object') base46Str = base46Str.ptr;
-  else base46Str = ensureString(base46Str);
-  _emscripten_bind_ImageOperations_createImage_1(self, base46Str);
-};;
-
 ImageOperations.prototype['grayscale_avg'] = ImageOperations.prototype.grayscale_avg = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
   var self = this.ptr;
   _emscripten_bind_ImageOperations_grayscale_avg_0(self);
@@ -251,17 +243,53 @@ ImageOperations.prototype['encodeByte'] = ImageOperations.prototype.encodeByte =
   return UTF8ToString(_emscripten_bind_ImageOperations_encodeByte_0(self));
 };;
 
-ImageOperations.prototype['printBuffer'] = ImageOperations.prototype.printBuffer = /** @suppress {undefinedVars, duplicate} @this{Object} */function(buffer, buffer_length, operations, ops_length) {
-  var self = this.ptr;
-  ensureCache.prepare();
-  if (buffer_length && typeof buffer_length === 'object') buffer_length = buffer_length.ptr;
-  if (ops_length && typeof ops_length === 'object') ops_length = ops_length.ptr;
-  _emscripten_bind_ImageOperations_printBuffer_4(self, buffer, buffer_length, operations, ops_length);
-};;
-
 ImageOperations.prototype['Undo'] = ImageOperations.prototype.Undo = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
   var self = this.ptr;
   _emscripten_bind_ImageOperations_Undo_0(self);
+};;
+
+ImageOperations.prototype['createImages'] = ImageOperations.prototype.createImages = /** @suppress {undefinedVars, duplicate} @this{Object} */function(base46Str) {
+  var self = this.ptr;
+  ensureCache.prepare();
+  if (base46Str && typeof base46Str === 'object') base46Str = base46Str.ptr;
+  else base46Str = ensureString(base46Str);
+  _emscripten_bind_ImageOperations_createImages_1(self, base46Str);
+};;
+
+ImageOperations.prototype['grayscale_avgs'] = ImageOperations.prototype.grayscale_avgs = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _emscripten_bind_ImageOperations_grayscale_avgs_0(self);
+};;
+
+ImageOperations.prototype['grayscale_lums'] = ImageOperations.prototype.grayscale_lums = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _emscripten_bind_ImageOperations_grayscale_lums_0(self);
+};;
+
+ImageOperations.prototype['colorMasks'] = ImageOperations.prototype.colorMasks = /** @suppress {undefinedVars, duplicate} @this{Object} */function(r, g, b) {
+  var self = this.ptr;
+  if (r && typeof r === 'object') r = r.ptr;
+  if (g && typeof g === 'object') g = g.ptr;
+  if (b && typeof b === 'object') b = b.ptr;
+  _emscripten_bind_ImageOperations_colorMasks_3(self, r, g, b);
+};;
+
+ImageOperations.prototype['encodeMessages'] = ImageOperations.prototype.encodeMessages = /** @suppress {undefinedVars, duplicate} @this{Object} */function(message) {
+  var self = this.ptr;
+  ensureCache.prepare();
+  if (message && typeof message === 'object') message = message.ptr;
+  else message = ensureString(message);
+  _emscripten_bind_ImageOperations_encodeMessages_1(self, message);
+};;
+
+ImageOperations.prototype['encodeBytes'] = ImageOperations.prototype.encodeBytes = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return UTF8ToString(_emscripten_bind_ImageOperations_encodeBytes_0(self));
+};;
+
+ImageOperations.prototype['Undos'] = ImageOperations.prototype.Undos = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _emscripten_bind_ImageOperations_Undos_0(self);
 };;
 
   ImageOperations.prototype['__destroy__'] = ImageOperations.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {

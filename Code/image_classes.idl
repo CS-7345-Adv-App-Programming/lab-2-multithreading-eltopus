@@ -3,14 +3,21 @@
 
 
 interface ImageOperations  {
+    // operations for single image
     void ImageOperations(DOMString base46Str);
-    void ImageOperations();
-    void createImage(DOMString base46Str);
     void grayscale_avg();
     void grayscale_lum();
     void colorMask(float r, float g, float b);
     void encodeMessage(DOMString  message);
     DOMString encodeByte();
-    void printBuffer(DOMString[] buffer, long buffer_length, DOMString[] operations, long ops_length);
     void Undo();
+    // operations for multiple images
+    void ImageOperations();
+    void createImages(DOMString base46Str);
+    void grayscale_avgs();
+    void grayscale_lums();
+    void colorMasks(float r, float g, float b);
+    void encodeMessages(DOMString  message);
+    DOMString encodeBytes();
+    void Undos();
 };

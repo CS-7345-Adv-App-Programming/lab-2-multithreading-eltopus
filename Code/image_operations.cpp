@@ -5,7 +5,7 @@
 #include <vector>
 #include <string>
 #include <sstream>
-
+#include <string.h>
 
 
 
@@ -190,7 +190,7 @@ class ImageOperations {
 
          bool writes(const char* filename)  {
             // std::cout << this->currentStates.size() << std::endl;
-            this->currentStates[1]->write(filename);
+            this->currentStates[0]->write(filename);
             // for (int i=0; i < this->currentStates.size(); i++) {
             //     const char* newFilename = std::string(filename + std::to_string(i) + ".png").c_str();
             //     std::cout << newFilename << std::endl;

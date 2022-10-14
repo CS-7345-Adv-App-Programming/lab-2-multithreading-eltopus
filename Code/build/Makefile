@@ -206,3 +206,29 @@ cmake_check_build_system:
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 
+IMAGE_OPS = /home/kali/LABS/lab-2-multithreading-eltopus/Code/image_operations.cpp
+IMAGE_H = /home/kali/LABS/lab-2-multithreading-eltopus/Code/image.h
+IMAGE_CPP = /home/kali/LABS/lab-2-multithreading-eltopus/Code/image.cpp
+IMAGE_ORIGINATOR = /home/kali/LABS/lab-2-multithreading-eltopus/Code/originator.cpp
+IMAGE_GLUE_WRAPPER = /home/kali/LABS/lab-2-multithreading-eltopus/Code/image_glue_wrapper.cpp
+OUTPUT_JS = /home/kali/LABS/lab-2-multithreading-eltopus/Code/ipl.js
+GLUE_JS = /home/kali/LABS/lab-2-multithreading-eltopus/Code/glue.js
+EMSDK_ROOT_FOLDER = /home/kali/emsdk/upstream/emscripten
+REPO_CODE_DIR = /home/kali/LABS/lab-2-multithreading-eltopus/Code
+WASM_OUTPUT = /home/kali/LABS/lab-2-multithreading-eltopus/Code/ipl.wasm
+IMAGE_MAIN = /home/kali/LABS/lab-2-multithreading-eltopus/Code/main.cpp
+NODE = /home/kali/LABS/lab-2-multithreading-eltopus/Code/app.js
+
+glue:
+	python3 $(EMSDK_ROOT_FOLDER)/tools/webidl_binder.py $(REPO_CODE_DIR)/image_classes.idl $(REPO_CODE_DIR)/glue
+
+build:
+	emcc $(IMAGE_OPS) $(IMAGE_CPP) $(IMAGE_GLUE_WRAPPER) --post-js $(GLUE_JS) -O1 -o $(OUTPUT_JS) -s ALLOW_MEMORY_GROWTH=1 -s EXPORTED_RUNTIME_METHODS=["ccall, cwrap"] -s EXPORTED_FUNCTIONS=["_free"] 
+
+compile:
+	$(SHELL source ./home/kali/emsdk/emsdk_env.sh)
+	emcc  $(IMAGE_MAIN)  $(IMAGE_OPS) $(IMAGE_CPP) -o $(WASM_OUTPUT)
+
+node:
+	node $(NODE)
+
