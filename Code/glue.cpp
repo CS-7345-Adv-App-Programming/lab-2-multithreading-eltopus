@@ -23,8 +23,16 @@ void EMSCRIPTEN_KEEPALIVE emscripten_bind_VoidPtr___destroy___0(void** self) {
 
 // ImageOperations
 
+ImageOperations* EMSCRIPTEN_KEEPALIVE emscripten_bind_ImageOperations_ImageOperations_0() {
+  return new ImageOperations();
+}
+
 ImageOperations* EMSCRIPTEN_KEEPALIVE emscripten_bind_ImageOperations_ImageOperations_1(char* base46Str) {
   return new ImageOperations(base46Str);
+}
+
+void EMSCRIPTEN_KEEPALIVE emscripten_bind_ImageOperations_createImage_1(ImageOperations* self, char* base46Str) {
+  self->createImage(base46Str);
 }
 
 void EMSCRIPTEN_KEEPALIVE emscripten_bind_ImageOperations_grayscale_avg_0(ImageOperations* self) {

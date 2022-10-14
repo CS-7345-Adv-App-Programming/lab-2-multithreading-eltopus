@@ -37,6 +37,8 @@ struct Image
 
     Image(Image* imageState);
 
+    Image(const char* input);
+
      virtual ~Image();
     
 
@@ -55,6 +57,8 @@ struct Image
     Type getFileType(const char* filename);
 
     char* encodeByte();
+    
+    std::string encodeByteString();
 
     void loadFromMemory(const std::vector<char> &img_data);
     

@@ -23,11 +23,19 @@ char* Image::encodeByte() {
     std::string enc = base64_encode(imageData, len);
     char* buffer = (char*)malloc(sizeof(char) * len);
     // std:: cout << len << std::endl;
-    // strncpy(buffer, enc.c_str(), len-1);
-    strcpy(buffer, enc.c_str());
-    // buffer[len-1] = '\0';
+    strncpy(buffer, enc.c_str(), len-1);
+    // strcpy(buffer, enc.c_str());
+    buffer[len-1] = '\0';
     
     return buffer;
+}
+
+std::string Image::encodeByteString() {
+    int len;
+    unsigned char *imageData = stbi_write_png_to_mem((const unsigned char *) data, w*channels, w, h, channels, &len);
+    //STBIW_FREE(png);
+    std::string enc = base64_encode(imageData, len);
+    return enc;
 }
 
 void Image::grayscale_avg() {
@@ -155,6 +163,15 @@ return success != 0;
 }
 
 Image::Image(char* input){
+    std::string input_str = input;
+    std::string decoded_data = base64_decode(input_str);
+    std::vector<char> img_data(decoded_data.begin(), decoded_data.end());
+    loadFromMemory(img_data);
+    this->state_ = this;
+
+}
+
+Image::Image(const char* input){
     std::string input_str = input;
     std::string decoded_data = base64_decode(input_str);
     std::vector<char> img_data(decoded_data.begin(), decoded_data.end());

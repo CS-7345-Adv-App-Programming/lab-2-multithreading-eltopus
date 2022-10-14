@@ -202,6 +202,7 @@ Module['VoidPtr'] = VoidPtr;
   ensureCache.prepare();
   if (base46Str && typeof base46Str === 'object') base46Str = base46Str.ptr;
   else base46Str = ensureString(base46Str);
+  if (base46Str === undefined) { this.ptr = _emscripten_bind_ImageOperations_ImageOperations_0(); getCache(ImageOperations)[this.ptr] = this;return }
   this.ptr = _emscripten_bind_ImageOperations_ImageOperations_1(base46Str);
   getCache(ImageOperations)[this.ptr] = this;
 };;
@@ -210,6 +211,14 @@ ImageOperations.prototype.constructor = ImageOperations;
 ImageOperations.prototype.__class__ = ImageOperations;
 ImageOperations.__cache__ = {};
 Module['ImageOperations'] = ImageOperations;
+
+ImageOperations.prototype['createImage'] = ImageOperations.prototype.createImage = /** @suppress {undefinedVars, duplicate} @this{Object} */function(base46Str) {
+  var self = this.ptr;
+  ensureCache.prepare();
+  if (base46Str && typeof base46Str === 'object') base46Str = base46Str.ptr;
+  else base46Str = ensureString(base46Str);
+  _emscripten_bind_ImageOperations_createImage_1(self, base46Str);
+};;
 
 ImageOperations.prototype['grayscale_avg'] = ImageOperations.prototype.grayscale_avg = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
   var self = this.ptr;
