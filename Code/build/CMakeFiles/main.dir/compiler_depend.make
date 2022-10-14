@@ -446,14 +446,36 @@ CMakeFiles/main.dir/main.cpp.o: /home/kali/LABS/lab-2-multithreading-eltopus/Cod
   /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
   /usr/include/c++/11/bits/fstream.tcc \
   /usr/include/c++/11/iostream \
+  /usr/include/unistd.h \
+  /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
+  /usr/include/x86_64-linux-gnu/bits/environments.h \
+  /usr/include/x86_64-linux-gnu/bits/confname.h \
+  /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
+  /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
+  /usr/include/linux/close_range.h \
   /home/kali/LABS/lab-2-multithreading-eltopus/Code/image_operations.cpp \
   /home/kali/LABS/lab-2-multithreading-eltopus/Code/image.h \
   /usr/include/c++/11/vector \
   /usr/include/c++/11/bits/stl_uninitialized.h \
   /usr/include/c++/11/bits/stl_vector.h \
   /usr/include/c++/11/bits/stl_bvector.h \
-  /usr/include/c++/11/bits/vector.tcc
+  /usr/include/c++/11/bits/vector.tcc \
+  /usr/include/c++/11/sstream \
+  /usr/include/c++/11/bits/sstream.tcc
 
+
+/usr/include/c++/11/sstream:
+
+/usr/include/linux/close_range.h:
+
+/usr/include/x86_64-linux-gnu/bits/unistd_ext.h:
+
+/usr/include/x86_64-linux-gnu/bits/getopt_core.h:
+
+/usr/include/x86_64-linux-gnu/bits/confname.h:
+
+/usr/include/x86_64-linux-gnu/bits/posix_opt.h:
 
 /usr/include/c++/11/bits/fstream.tcc:
 
@@ -510,6 +532,8 @@ CMakeFiles/main.dir/main.cpp.o: /home/kali/LABS/lab-2-multithreading-eltopus/Cod
 /usr/include/c++/11/ext/atomicity.h:
 
 /usr/include/c++/11/bits/stl_pair.h:
+
+/usr/include/x86_64-linux-gnu/bits/getopt_posix.h:
 
 /usr/include/x86_64-linux-gnu/bits/setjmp.h:
 
@@ -583,6 +607,8 @@ CMakeFiles/main.dir/main.cpp.o: /home/kali/LABS/lab-2-multithreading-eltopus/Cod
 
 /usr/include/x86_64-linux-gnu/bits/xopen_lim.h:
 
+/usr/include/unistd.h:
+
 /usr/include/c++/11/bits/stl_algobase.h:
 
 /usr/include/c++/11/cwchar:
@@ -630,6 +656,8 @@ CMakeFiles/main.dir/main.cpp.o: /home/kali/LABS/lab-2-multithreading-eltopus/Cod
 /usr/include/c++/11/bits/alloc_traits.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/atomic_word.h:
+
+/usr/include/x86_64-linux-gnu/bits/environments.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h:
 
@@ -726,6 +754,8 @@ CMakeFiles/main.dir/main.cpp.o: /home/kali/LABS/lab-2-multithreading-eltopus/Cod
 /usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
 
 /usr/include/c++/11/bits/stl_iterator.h:
+
+/usr/include/c++/11/bits/sstream.tcc:
 
 /usr/include/c++/11/new:
 
