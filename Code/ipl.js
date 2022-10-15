@@ -1120,127 +1120,9 @@ function array_bounds_check_error(idx,size) { throw 'Array index ' + idx + ' out
       throw ptr;
     }
 
-  function _abort() {
-      abort('');
-    }
-
-  function _emscripten_memcpy_big(dest, src, num) {
-      HEAPU8.copyWithin(dest, src, src + num);
-    }
-
-  function getHeapMax() {
-      // Stay one Wasm page short of 4GB: while e.g. Chrome is able to allocate
-      // full 4GB Wasm memories, the size will wrap back to 0 bytes in Wasm side
-      // for any code that deals with heap sizes, which would require special
-      // casing all heap size related code to treat 0 specially.
-      return 2147483648;
-    }
-  
-  function emscripten_realloc_buffer(size) {
-      try {
-        // round size grow request up to wasm page size (fixed 64KB per spec)
-        wasmMemory.grow((size - buffer.byteLength + 65535) >>> 16); // .grow() takes a delta compared to the previous size
-        updateGlobalBufferAndViews(wasmMemory.buffer);
-        return 1 /*success*/;
-      } catch(e) {
-      }
-      // implicit 0 return to save code size (caller will cast "undefined" into 0
-      // anyhow)
-    }
-  function _emscripten_resize_heap(requestedSize) {
-      var oldSize = HEAPU8.length;
-      requestedSize = requestedSize >>> 0;
-      // With multithreaded builds, races can happen (another thread might increase the size
-      // in between), so return a failure, and let the caller retry.
-  
-      // Memory resize rules:
-      // 1.  Always increase heap size to at least the requested size, rounded up
-      //     to next page multiple.
-      // 2a. If MEMORY_GROWTH_LINEAR_STEP == -1, excessively resize the heap
-      //     geometrically: increase the heap size according to
-      //     MEMORY_GROWTH_GEOMETRIC_STEP factor (default +20%), At most
-      //     overreserve by MEMORY_GROWTH_GEOMETRIC_CAP bytes (default 96MB).
-      // 2b. If MEMORY_GROWTH_LINEAR_STEP != -1, excessively resize the heap
-      //     linearly: increase the heap size by at least
-      //     MEMORY_GROWTH_LINEAR_STEP bytes.
-      // 3.  Max size for the heap is capped at 2048MB-WASM_PAGE_SIZE, or by
-      //     MAXIMUM_MEMORY, or by ASAN limit, depending on which is smallest
-      // 4.  If we were unable to allocate as much memory, it may be due to
-      //     over-eager decision to excessively reserve due to (3) above.
-      //     Hence if an allocation fails, cut down on the amount of excess
-      //     growth, in an attempt to succeed to perform a smaller allocation.
-  
-      // A limit is set for how much we can grow. We should not exceed that
-      // (the wasm binary specifies it, so if we tried, we'd fail anyhow).
-      var maxHeapSize = getHeapMax();
-      if (requestedSize > maxHeapSize) {
-        return false;
-      }
-  
-      let alignUp = (x, multiple) => x + (multiple - x % multiple) % multiple;
-  
-      // Loop through potential heap size increases. If we attempt a too eager
-      // reservation that fails, cut down on the attempted size and reserve a
-      // smaller bump instead. (max 3 times, chosen somewhat arbitrarily)
-      for (var cutDown = 1; cutDown <= 4; cutDown *= 2) {
-        var overGrownHeapSize = oldSize * (1 + 0.2 / cutDown); // ensure geometric growth
-        // but limit overreserving (default to capping at +96MB overgrowth at most)
-        overGrownHeapSize = Math.min(overGrownHeapSize, requestedSize + 100663296 );
-  
-        var newSize = Math.min(maxHeapSize, alignUp(Math.max(requestedSize, overGrownHeapSize), 65536));
-  
-        var replacement = emscripten_realloc_buffer(newSize);
-        if (replacement) {
-  
-          return true;
-        }
-      }
-      return false;
-    }
-
-  var ENV = {};
-  
-  function getExecutableName() {
-      return thisProgram || './this.program';
-    }
-  function getEnvStrings() {
-      if (!getEnvStrings.strings) {
-        // Default values.
-        // Browser language detection #8751
-        var lang = ((typeof navigator == 'object' && navigator.languages && navigator.languages[0]) || 'C').replace('-', '_') + '.UTF-8';
-        var env = {
-          'USER': 'web_user',
-          'LOGNAME': 'web_user',
-          'PATH': '/',
-          'PWD': '/',
-          'HOME': '/home/web_user',
-          'LANG': lang,
-          '_': getExecutableName()
-        };
-        // Apply the user-provided values, if any.
-        for (var x in ENV) {
-          // x is a key in ENV; if ENV[x] is undefined, that means it was
-          // explicitly set to be so. We allow user code to do that to
-          // force variables with default values to remain unset.
-          if (ENV[x] === undefined) delete env[x];
-          else env[x] = ENV[x];
-        }
-        var strings = [];
-        for (var x in env) {
-          strings.push(x + '=' + env[x]);
-        }
-        getEnvStrings.strings = strings;
-      }
-      return getEnvStrings.strings;
-    }
-  
-  /** @param {boolean=} dontAddNull */
-  function writeAsciiToMemory(str, buffer, dontAddNull) {
-      for (var i = 0; i < str.length; ++i) {
-        HEAP8[((buffer++)>>0)] = str.charCodeAt(i);
-      }
-      // Null-terminate the pointer to the HEAP.
-      if (!dontAddNull) HEAP8[((buffer)>>0)] = 0;
+  function setErrNo(value) {
+      HEAP32[((___errno_location())>>2)] = value;
+      return value;
     }
   
   var PATH = {isAbs:(path) => path.charAt(0) === '/',splitPath:(filename) => {
@@ -3456,6 +3338,272 @@ function array_bounds_check_error(idx,size) { throw 'Array index ' + idx + ' out
         if (!stream) throw new FS.ErrnoError(8);
         return stream;
       }};
+  function ___syscall_fcntl64(fd, cmd, varargs) {
+  SYSCALLS.varargs = varargs;
+  try {
+  
+      var stream = SYSCALLS.getStreamFromFD(fd);
+      switch (cmd) {
+        case 0: {
+          var arg = SYSCALLS.get();
+          if (arg < 0) {
+            return -28;
+          }
+          var newStream;
+          newStream = FS.createStream(stream, arg);
+          return newStream.fd;
+        }
+        case 1:
+        case 2:
+          return 0;  // FD_CLOEXEC makes no sense for a single process.
+        case 3:
+          return stream.flags;
+        case 4: {
+          var arg = SYSCALLS.get();
+          stream.flags |= arg;
+          return 0;
+        }
+        case 5:
+        /* case 5: Currently in musl F_GETLK64 has same value as F_GETLK, so omitted to avoid duplicate case blocks. If that changes, uncomment this */ {
+          
+          var arg = SYSCALLS.get();
+          var offset = 0;
+          // We're always unlocked.
+          HEAP16[(((arg)+(offset))>>1)] = 2;
+          return 0;
+        }
+        case 6:
+        case 7:
+        /* case 6: Currently in musl F_SETLK64 has same value as F_SETLK, so omitted to avoid duplicate case blocks. If that changes, uncomment this */
+        /* case 7: Currently in musl F_SETLKW64 has same value as F_SETLKW, so omitted to avoid duplicate case blocks. If that changes, uncomment this */
+          
+          
+          return 0; // Pretend that the locking is successful.
+        case 16:
+        case 8:
+          return -28; // These are for sockets. We don't have them fully implemented yet.
+        case 9:
+          // musl trusts getown return values, due to a bug where they must be, as they overlap with errors. just return -1 here, so fcntl() returns that, and we set errno ourselves.
+          setErrNo(28);
+          return -1;
+        default: {
+          return -28;
+        }
+      }
+    } catch (e) {
+    if (typeof FS == 'undefined' || !(e instanceof FS.ErrnoError)) throw e;
+    return -e.errno;
+  }
+  }
+
+  function ___syscall_ioctl(fd, op, varargs) {
+  SYSCALLS.varargs = varargs;
+  try {
+  
+      var stream = SYSCALLS.getStreamFromFD(fd);
+      switch (op) {
+        case 21509:
+        case 21505: {
+          if (!stream.tty) return -59;
+          return 0;
+        }
+        case 21510:
+        case 21511:
+        case 21512:
+        case 21506:
+        case 21507:
+        case 21508: {
+          if (!stream.tty) return -59;
+          return 0; // no-op, not actually adjusting terminal settings
+        }
+        case 21519: {
+          if (!stream.tty) return -59;
+          var argp = SYSCALLS.get();
+          HEAP32[((argp)>>2)] = 0;
+          return 0;
+        }
+        case 21520: {
+          if (!stream.tty) return -59;
+          return -28; // not supported
+        }
+        case 21531: {
+          var argp = SYSCALLS.get();
+          return FS.ioctl(stream, op, argp);
+        }
+        case 21523: {
+          // TODO: in theory we should write to the winsize struct that gets
+          // passed in, but for now musl doesn't read anything on it
+          if (!stream.tty) return -59;
+          return 0;
+        }
+        case 21524: {
+          // TODO: technically, this ioctl call should change the window size.
+          // but, since emscripten doesn't have any concept of a terminal window
+          // yet, we'll just silently throw it away as we do TIOCGWINSZ
+          if (!stream.tty) return -59;
+          return 0;
+        }
+        default: return -28; // not supported
+      }
+    } catch (e) {
+    if (typeof FS == 'undefined' || !(e instanceof FS.ErrnoError)) throw e;
+    return -e.errno;
+  }
+  }
+
+  function ___syscall_openat(dirfd, path, flags, varargs) {
+  SYSCALLS.varargs = varargs;
+  try {
+  
+      path = SYSCALLS.getStr(path);
+      path = SYSCALLS.calculateAt(dirfd, path);
+      var mode = varargs ? SYSCALLS.get() : 0;
+      return FS.open(path, flags, mode).fd;
+    } catch (e) {
+    if (typeof FS == 'undefined' || !(e instanceof FS.ErrnoError)) throw e;
+    return -e.errno;
+  }
+  }
+
+  function __emscripten_date_now() {
+      return Date.now();
+    }
+
+  var nowIsMonotonic = true;;
+  function __emscripten_get_now_is_monotonic() {
+      return nowIsMonotonic;
+    }
+
+  function _abort() {
+      abort('');
+    }
+
+  var _emscripten_get_now;if (ENVIRONMENT_IS_NODE) {
+    _emscripten_get_now = () => {
+      var t = process['hrtime']();
+      return t[0] * 1e3 + t[1] / 1e6;
+    };
+  } else _emscripten_get_now = () => performance.now();
+  ;
+
+  function _emscripten_memcpy_big(dest, src, num) {
+      HEAPU8.copyWithin(dest, src, src + num);
+    }
+
+  function getHeapMax() {
+      // Stay one Wasm page short of 4GB: while e.g. Chrome is able to allocate
+      // full 4GB Wasm memories, the size will wrap back to 0 bytes in Wasm side
+      // for any code that deals with heap sizes, which would require special
+      // casing all heap size related code to treat 0 specially.
+      return 2147483648;
+    }
+  
+  function emscripten_realloc_buffer(size) {
+      try {
+        // round size grow request up to wasm page size (fixed 64KB per spec)
+        wasmMemory.grow((size - buffer.byteLength + 65535) >>> 16); // .grow() takes a delta compared to the previous size
+        updateGlobalBufferAndViews(wasmMemory.buffer);
+        return 1 /*success*/;
+      } catch(e) {
+      }
+      // implicit 0 return to save code size (caller will cast "undefined" into 0
+      // anyhow)
+    }
+  function _emscripten_resize_heap(requestedSize) {
+      var oldSize = HEAPU8.length;
+      requestedSize = requestedSize >>> 0;
+      // With multithreaded builds, races can happen (another thread might increase the size
+      // in between), so return a failure, and let the caller retry.
+  
+      // Memory resize rules:
+      // 1.  Always increase heap size to at least the requested size, rounded up
+      //     to next page multiple.
+      // 2a. If MEMORY_GROWTH_LINEAR_STEP == -1, excessively resize the heap
+      //     geometrically: increase the heap size according to
+      //     MEMORY_GROWTH_GEOMETRIC_STEP factor (default +20%), At most
+      //     overreserve by MEMORY_GROWTH_GEOMETRIC_CAP bytes (default 96MB).
+      // 2b. If MEMORY_GROWTH_LINEAR_STEP != -1, excessively resize the heap
+      //     linearly: increase the heap size by at least
+      //     MEMORY_GROWTH_LINEAR_STEP bytes.
+      // 3.  Max size for the heap is capped at 2048MB-WASM_PAGE_SIZE, or by
+      //     MAXIMUM_MEMORY, or by ASAN limit, depending on which is smallest
+      // 4.  If we were unable to allocate as much memory, it may be due to
+      //     over-eager decision to excessively reserve due to (3) above.
+      //     Hence if an allocation fails, cut down on the amount of excess
+      //     growth, in an attempt to succeed to perform a smaller allocation.
+  
+      // A limit is set for how much we can grow. We should not exceed that
+      // (the wasm binary specifies it, so if we tried, we'd fail anyhow).
+      var maxHeapSize = getHeapMax();
+      if (requestedSize > maxHeapSize) {
+        return false;
+      }
+  
+      let alignUp = (x, multiple) => x + (multiple - x % multiple) % multiple;
+  
+      // Loop through potential heap size increases. If we attempt a too eager
+      // reservation that fails, cut down on the attempted size and reserve a
+      // smaller bump instead. (max 3 times, chosen somewhat arbitrarily)
+      for (var cutDown = 1; cutDown <= 4; cutDown *= 2) {
+        var overGrownHeapSize = oldSize * (1 + 0.2 / cutDown); // ensure geometric growth
+        // but limit overreserving (default to capping at +96MB overgrowth at most)
+        overGrownHeapSize = Math.min(overGrownHeapSize, requestedSize + 100663296 );
+  
+        var newSize = Math.min(maxHeapSize, alignUp(Math.max(requestedSize, overGrownHeapSize), 65536));
+  
+        var replacement = emscripten_realloc_buffer(newSize);
+        if (replacement) {
+  
+          return true;
+        }
+      }
+      return false;
+    }
+
+  var ENV = {};
+  
+  function getExecutableName() {
+      return thisProgram || './this.program';
+    }
+  function getEnvStrings() {
+      if (!getEnvStrings.strings) {
+        // Default values.
+        // Browser language detection #8751
+        var lang = ((typeof navigator == 'object' && navigator.languages && navigator.languages[0]) || 'C').replace('-', '_') + '.UTF-8';
+        var env = {
+          'USER': 'web_user',
+          'LOGNAME': 'web_user',
+          'PATH': '/',
+          'PWD': '/',
+          'HOME': '/home/web_user',
+          'LANG': lang,
+          '_': getExecutableName()
+        };
+        // Apply the user-provided values, if any.
+        for (var x in ENV) {
+          // x is a key in ENV; if ENV[x] is undefined, that means it was
+          // explicitly set to be so. We allow user code to do that to
+          // force variables with default values to remain unset.
+          if (ENV[x] === undefined) delete env[x];
+          else env[x] = ENV[x];
+        }
+        var strings = [];
+        for (var x in env) {
+          strings.push(x + '=' + env[x]);
+        }
+        getEnvStrings.strings = strings;
+      }
+      return getEnvStrings.strings;
+    }
+  
+  /** @param {boolean=} dontAddNull */
+  function writeAsciiToMemory(str, buffer, dontAddNull) {
+      for (var i = 0; i < str.length; ++i) {
+        HEAP8[((buffer++)>>0)] = str.charCodeAt(i);
+      }
+      // Null-terminate the pointer to the HEAP.
+      if (!dontAddNull) HEAP8[((buffer)>>0)] = 0;
+    }
   function _environ_get(__environ, environ_buf) {
       var bufSize = 0;
       getEnvStrings().forEach(function(string, i) {
@@ -4415,8 +4563,14 @@ var asmLibraryArg = {
   "__assert_fail": ___assert_fail,
   "__cxa_allocate_exception": ___cxa_allocate_exception,
   "__cxa_throw": ___cxa_throw,
+  "__syscall_fcntl64": ___syscall_fcntl64,
+  "__syscall_ioctl": ___syscall_ioctl,
+  "__syscall_openat": ___syscall_openat,
+  "_emscripten_date_now": __emscripten_date_now,
+  "_emscripten_get_now_is_monotonic": __emscripten_get_now_is_monotonic,
   "abort": _abort,
   "array_bounds_check_error": array_bounds_check_error,
+  "emscripten_get_now": _emscripten_get_now,
   "emscripten_memcpy_big": _emscripten_memcpy_big,
   "emscripten_resize_heap": _emscripten_resize_heap,
   "environ_get": _environ_get,
@@ -4454,41 +4608,6 @@ var _emscripten_bind_ImageOperations_ImageOperations_0 = Module["_emscripten_bin
 };
 
 /** @type {function(...*):?} */
-var _emscripten_bind_ImageOperations_ImageOperations_1 = Module["_emscripten_bind_ImageOperations_ImageOperations_1"] = function() {
-  return (_emscripten_bind_ImageOperations_ImageOperations_1 = Module["_emscripten_bind_ImageOperations_ImageOperations_1"] = Module["asm"]["emscripten_bind_ImageOperations_ImageOperations_1"]).apply(null, arguments);
-};
-
-/** @type {function(...*):?} */
-var _emscripten_bind_ImageOperations_grayscale_avg_0 = Module["_emscripten_bind_ImageOperations_grayscale_avg_0"] = function() {
-  return (_emscripten_bind_ImageOperations_grayscale_avg_0 = Module["_emscripten_bind_ImageOperations_grayscale_avg_0"] = Module["asm"]["emscripten_bind_ImageOperations_grayscale_avg_0"]).apply(null, arguments);
-};
-
-/** @type {function(...*):?} */
-var _emscripten_bind_ImageOperations_grayscale_lum_0 = Module["_emscripten_bind_ImageOperations_grayscale_lum_0"] = function() {
-  return (_emscripten_bind_ImageOperations_grayscale_lum_0 = Module["_emscripten_bind_ImageOperations_grayscale_lum_0"] = Module["asm"]["emscripten_bind_ImageOperations_grayscale_lum_0"]).apply(null, arguments);
-};
-
-/** @type {function(...*):?} */
-var _emscripten_bind_ImageOperations_colorMask_3 = Module["_emscripten_bind_ImageOperations_colorMask_3"] = function() {
-  return (_emscripten_bind_ImageOperations_colorMask_3 = Module["_emscripten_bind_ImageOperations_colorMask_3"] = Module["asm"]["emscripten_bind_ImageOperations_colorMask_3"]).apply(null, arguments);
-};
-
-/** @type {function(...*):?} */
-var _emscripten_bind_ImageOperations_encodeMessage_1 = Module["_emscripten_bind_ImageOperations_encodeMessage_1"] = function() {
-  return (_emscripten_bind_ImageOperations_encodeMessage_1 = Module["_emscripten_bind_ImageOperations_encodeMessage_1"] = Module["asm"]["emscripten_bind_ImageOperations_encodeMessage_1"]).apply(null, arguments);
-};
-
-/** @type {function(...*):?} */
-var _emscripten_bind_ImageOperations_encodeByte_0 = Module["_emscripten_bind_ImageOperations_encodeByte_0"] = function() {
-  return (_emscripten_bind_ImageOperations_encodeByte_0 = Module["_emscripten_bind_ImageOperations_encodeByte_0"] = Module["asm"]["emscripten_bind_ImageOperations_encodeByte_0"]).apply(null, arguments);
-};
-
-/** @type {function(...*):?} */
-var _emscripten_bind_ImageOperations_Undo_0 = Module["_emscripten_bind_ImageOperations_Undo_0"] = function() {
-  return (_emscripten_bind_ImageOperations_Undo_0 = Module["_emscripten_bind_ImageOperations_Undo_0"] = Module["asm"]["emscripten_bind_ImageOperations_Undo_0"]).apply(null, arguments);
-};
-
-/** @type {function(...*):?} */
 var _emscripten_bind_ImageOperations_createImages_1 = Module["_emscripten_bind_ImageOperations_createImages_1"] = function() {
   return (_emscripten_bind_ImageOperations_createImages_1 = Module["_emscripten_bind_ImageOperations_createImages_1"] = Module["asm"]["emscripten_bind_ImageOperations_createImages_1"]).apply(null, arguments);
 };
@@ -4516,6 +4635,16 @@ var _emscripten_bind_ImageOperations_encodeMessages_1 = Module["_emscripten_bind
 /** @type {function(...*):?} */
 var _emscripten_bind_ImageOperations_encodeBytes_0 = Module["_emscripten_bind_ImageOperations_encodeBytes_0"] = function() {
   return (_emscripten_bind_ImageOperations_encodeBytes_0 = Module["_emscripten_bind_ImageOperations_encodeBytes_0"] = Module["asm"]["emscripten_bind_ImageOperations_encodeBytes_0"]).apply(null, arguments);
+};
+
+/** @type {function(...*):?} */
+var _emscripten_bind_ImageOperations_std_convolve_clamp_to_0_5 = Module["_emscripten_bind_ImageOperations_std_convolve_clamp_to_0_5"] = function() {
+  return (_emscripten_bind_ImageOperations_std_convolve_clamp_to_0_5 = Module["_emscripten_bind_ImageOperations_std_convolve_clamp_to_0_5"] = Module["asm"]["emscripten_bind_ImageOperations_std_convolve_clamp_to_0_5"]).apply(null, arguments);
+};
+
+/** @type {function(...*):?} */
+var _emscripten_bind_ImageOperations_std_convolve_clamp_to_border_5 = Module["_emscripten_bind_ImageOperations_std_convolve_clamp_to_border_5"] = function() {
+  return (_emscripten_bind_ImageOperations_std_convolve_clamp_to_border_5 = Module["_emscripten_bind_ImageOperations_std_convolve_clamp_to_border_5"] = Module["asm"]["emscripten_bind_ImageOperations_std_convolve_clamp_to_border_5"]).apply(null, arguments);
 };
 
 /** @type {function(...*):?} */
@@ -4578,8 +4707,8 @@ var dynCall_iiiiiijj = Module["dynCall_iiiiiijj"] = function() {
   return (dynCall_iiiiiijj = Module["dynCall_iiiiiijj"] = Module["asm"]["dynCall_iiiiiijj"]).apply(null, arguments);
 };
 
-var ___start_em_js = Module['___start_em_js'] = 22204;
-var ___stop_em_js = Module['___stop_em_js'] = 22302;
+var ___start_em_js = Module['___start_em_js'] = 22932;
+var ___stop_em_js = Module['___stop_em_js'] = 23030;
 
 
 
@@ -4855,12 +4984,8 @@ Module['VoidPtr'] = VoidPtr;
   _emscripten_bind_VoidPtr___destroy___0(self);
 };
 // ImageOperations
-/** @suppress {undefinedVars, duplicate} @this{Object} */function ImageOperations(base46Str) {
-  ensureCache.prepare();
-  if (base46Str && typeof base46Str === 'object') base46Str = base46Str.ptr;
-  else base46Str = ensureString(base46Str);
-  if (base46Str === undefined) { this.ptr = _emscripten_bind_ImageOperations_ImageOperations_0(); getCache(ImageOperations)[this.ptr] = this;return }
-  this.ptr = _emscripten_bind_ImageOperations_ImageOperations_1(base46Str);
+/** @suppress {undefinedVars, duplicate} @this{Object} */function ImageOperations() {
+  this.ptr = _emscripten_bind_ImageOperations_ImageOperations_0();
   getCache(ImageOperations)[this.ptr] = this;
 };;
 ImageOperations.prototype = Object.create(WrapperObject.prototype);
@@ -4868,42 +4993,6 @@ ImageOperations.prototype.constructor = ImageOperations;
 ImageOperations.prototype.__class__ = ImageOperations;
 ImageOperations.__cache__ = {};
 Module['ImageOperations'] = ImageOperations;
-
-ImageOperations.prototype['grayscale_avg'] = ImageOperations.prototype.grayscale_avg = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
-  var self = this.ptr;
-  _emscripten_bind_ImageOperations_grayscale_avg_0(self);
-};;
-
-ImageOperations.prototype['grayscale_lum'] = ImageOperations.prototype.grayscale_lum = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
-  var self = this.ptr;
-  _emscripten_bind_ImageOperations_grayscale_lum_0(self);
-};;
-
-ImageOperations.prototype['colorMask'] = ImageOperations.prototype.colorMask = /** @suppress {undefinedVars, duplicate} @this{Object} */function(r, g, b) {
-  var self = this.ptr;
-  if (r && typeof r === 'object') r = r.ptr;
-  if (g && typeof g === 'object') g = g.ptr;
-  if (b && typeof b === 'object') b = b.ptr;
-  _emscripten_bind_ImageOperations_colorMask_3(self, r, g, b);
-};;
-
-ImageOperations.prototype['encodeMessage'] = ImageOperations.prototype.encodeMessage = /** @suppress {undefinedVars, duplicate} @this{Object} */function(message) {
-  var self = this.ptr;
-  ensureCache.prepare();
-  if (message && typeof message === 'object') message = message.ptr;
-  else message = ensureString(message);
-  _emscripten_bind_ImageOperations_encodeMessage_1(self, message);
-};;
-
-ImageOperations.prototype['encodeByte'] = ImageOperations.prototype.encodeByte = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
-  var self = this.ptr;
-  return UTF8ToString(_emscripten_bind_ImageOperations_encodeByte_0(self));
-};;
-
-ImageOperations.prototype['Undo'] = ImageOperations.prototype.Undo = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
-  var self = this.ptr;
-  _emscripten_bind_ImageOperations_Undo_0(self);
-};;
 
 ImageOperations.prototype['createImages'] = ImageOperations.prototype.createImages = /** @suppress {undefinedVars, duplicate} @this{Object} */function(base46Str) {
   var self = this.ptr;
@@ -4942,6 +5031,26 @@ ImageOperations.prototype['encodeMessages'] = ImageOperations.prototype.encodeMe
 ImageOperations.prototype['encodeBytes'] = ImageOperations.prototype.encodeBytes = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
   var self = this.ptr;
   return UTF8ToString(_emscripten_bind_ImageOperations_encodeBytes_0(self));
+};;
+
+ImageOperations.prototype['std_convolve_clamp_to_0'] = ImageOperations.prototype.std_convolve_clamp_to_0 = /** @suppress {undefinedVars, duplicate} @this{Object} */function(channel, ker_w, ker_h, cr, cc) {
+  var self = this.ptr;
+  if (channel && typeof channel === 'object') channel = channel.ptr;
+  if (ker_w && typeof ker_w === 'object') ker_w = ker_w.ptr;
+  if (ker_h && typeof ker_h === 'object') ker_h = ker_h.ptr;
+  if (cr && typeof cr === 'object') cr = cr.ptr;
+  if (cc && typeof cc === 'object') cc = cc.ptr;
+  _emscripten_bind_ImageOperations_std_convolve_clamp_to_0_5(self, channel, ker_w, ker_h, cr, cc);
+};;
+
+ImageOperations.prototype['std_convolve_clamp_to_border'] = ImageOperations.prototype.std_convolve_clamp_to_border = /** @suppress {undefinedVars, duplicate} @this{Object} */function(channel, ker_w, ker_h, cr, cc) {
+  var self = this.ptr;
+  if (channel && typeof channel === 'object') channel = channel.ptr;
+  if (ker_w && typeof ker_w === 'object') ker_w = ker_w.ptr;
+  if (ker_h && typeof ker_h === 'object') ker_h = ker_h.ptr;
+  if (cr && typeof cr === 'object') cr = cr.ptr;
+  if (cc && typeof cc === 'object') cc = cc.ptr;
+  _emscripten_bind_ImageOperations_std_convolve_clamp_to_border_5(self, channel, ker_w, ker_h, cr, cc);
 };;
 
 ImageOperations.prototype['Undos'] = ImageOperations.prototype.Undos = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {

@@ -27,34 +27,6 @@ ImageOperations* EMSCRIPTEN_KEEPALIVE emscripten_bind_ImageOperations_ImageOpera
   return new ImageOperations();
 }
 
-ImageOperations* EMSCRIPTEN_KEEPALIVE emscripten_bind_ImageOperations_ImageOperations_1(char* base46Str) {
-  return new ImageOperations(base46Str);
-}
-
-void EMSCRIPTEN_KEEPALIVE emscripten_bind_ImageOperations_grayscale_avg_0(ImageOperations* self) {
-  self->grayscale_avg();
-}
-
-void EMSCRIPTEN_KEEPALIVE emscripten_bind_ImageOperations_grayscale_lum_0(ImageOperations* self) {
-  self->grayscale_lum();
-}
-
-void EMSCRIPTEN_KEEPALIVE emscripten_bind_ImageOperations_colorMask_3(ImageOperations* self, float r, float g, float b) {
-  self->colorMask(r, g, b);
-}
-
-void EMSCRIPTEN_KEEPALIVE emscripten_bind_ImageOperations_encodeMessage_1(ImageOperations* self, char* message) {
-  self->encodeMessage(message);
-}
-
-char* EMSCRIPTEN_KEEPALIVE emscripten_bind_ImageOperations_encodeByte_0(ImageOperations* self) {
-  return self->encodeByte();
-}
-
-void EMSCRIPTEN_KEEPALIVE emscripten_bind_ImageOperations_Undo_0(ImageOperations* self) {
-  self->Undo();
-}
-
 void EMSCRIPTEN_KEEPALIVE emscripten_bind_ImageOperations_createImages_1(ImageOperations* self, char* base46Str) {
   self->createImages(base46Str);
 }
@@ -77,6 +49,14 @@ void EMSCRIPTEN_KEEPALIVE emscripten_bind_ImageOperations_encodeMessages_1(Image
 
 char* EMSCRIPTEN_KEEPALIVE emscripten_bind_ImageOperations_encodeBytes_0(ImageOperations* self) {
   return self->encodeBytes();
+}
+
+void EMSCRIPTEN_KEEPALIVE emscripten_bind_ImageOperations_std_convolve_clamp_to_0_5(ImageOperations* self, unsigned char channel, unsigned int ker_w, unsigned int ker_h, unsigned int cr, unsigned int cc) {
+  self->std_convolve_clamp_to_0(channel, ker_w, ker_h, cr, cc);
+}
+
+void EMSCRIPTEN_KEEPALIVE emscripten_bind_ImageOperations_std_convolve_clamp_to_border_5(ImageOperations* self, unsigned char channel, unsigned int ker_w, unsigned int ker_h, unsigned int cr, unsigned int cc) {
+  self->std_convolve_clamp_to_border(channel, ker_w, ker_h, cr, cc);
 }
 
 void EMSCRIPTEN_KEEPALIVE emscripten_bind_ImageOperations_Undos_0(ImageOperations* self) {

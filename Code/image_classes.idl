@@ -4,13 +4,7 @@
 
 interface ImageOperations  {
     // operations for single image
-    void ImageOperations(DOMString base46Str);
-    void grayscale_avg();
-    void grayscale_lum();
-    void colorMask(float r, float g, float b);
-    void encodeMessage(DOMString  message);
-    DOMString encodeByte();
-    void Undo();
+    
     // operations for multiple images
     void ImageOperations();
     void createImages(DOMString base46Str);
@@ -19,5 +13,7 @@ interface ImageOperations  {
     void colorMasks(float r, float g, float b);
     void encodeMessages(DOMString  message);
     DOMString encodeBytes();
+    void std_convolve_clamp_to_0(octet channel, unsigned long ker_w, unsigned long ker_h, unsigned long cr, unsigned long cc);
+    void std_convolve_clamp_to_border(octet channel, unsigned long ker_w, unsigned long ker_h, unsigned long cr, unsigned long cc);
     void Undos();
 };

@@ -198,12 +198,8 @@ Module['VoidPtr'] = VoidPtr;
   _emscripten_bind_VoidPtr___destroy___0(self);
 };
 // ImageOperations
-/** @suppress {undefinedVars, duplicate} @this{Object} */function ImageOperations(base46Str) {
-  ensureCache.prepare();
-  if (base46Str && typeof base46Str === 'object') base46Str = base46Str.ptr;
-  else base46Str = ensureString(base46Str);
-  if (base46Str === undefined) { this.ptr = _emscripten_bind_ImageOperations_ImageOperations_0(); getCache(ImageOperations)[this.ptr] = this;return }
-  this.ptr = _emscripten_bind_ImageOperations_ImageOperations_1(base46Str);
+/** @suppress {undefinedVars, duplicate} @this{Object} */function ImageOperations() {
+  this.ptr = _emscripten_bind_ImageOperations_ImageOperations_0();
   getCache(ImageOperations)[this.ptr] = this;
 };;
 ImageOperations.prototype = Object.create(WrapperObject.prototype);
@@ -211,42 +207,6 @@ ImageOperations.prototype.constructor = ImageOperations;
 ImageOperations.prototype.__class__ = ImageOperations;
 ImageOperations.__cache__ = {};
 Module['ImageOperations'] = ImageOperations;
-
-ImageOperations.prototype['grayscale_avg'] = ImageOperations.prototype.grayscale_avg = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
-  var self = this.ptr;
-  _emscripten_bind_ImageOperations_grayscale_avg_0(self);
-};;
-
-ImageOperations.prototype['grayscale_lum'] = ImageOperations.prototype.grayscale_lum = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
-  var self = this.ptr;
-  _emscripten_bind_ImageOperations_grayscale_lum_0(self);
-};;
-
-ImageOperations.prototype['colorMask'] = ImageOperations.prototype.colorMask = /** @suppress {undefinedVars, duplicate} @this{Object} */function(r, g, b) {
-  var self = this.ptr;
-  if (r && typeof r === 'object') r = r.ptr;
-  if (g && typeof g === 'object') g = g.ptr;
-  if (b && typeof b === 'object') b = b.ptr;
-  _emscripten_bind_ImageOperations_colorMask_3(self, r, g, b);
-};;
-
-ImageOperations.prototype['encodeMessage'] = ImageOperations.prototype.encodeMessage = /** @suppress {undefinedVars, duplicate} @this{Object} */function(message) {
-  var self = this.ptr;
-  ensureCache.prepare();
-  if (message && typeof message === 'object') message = message.ptr;
-  else message = ensureString(message);
-  _emscripten_bind_ImageOperations_encodeMessage_1(self, message);
-};;
-
-ImageOperations.prototype['encodeByte'] = ImageOperations.prototype.encodeByte = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
-  var self = this.ptr;
-  return UTF8ToString(_emscripten_bind_ImageOperations_encodeByte_0(self));
-};;
-
-ImageOperations.prototype['Undo'] = ImageOperations.prototype.Undo = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
-  var self = this.ptr;
-  _emscripten_bind_ImageOperations_Undo_0(self);
-};;
 
 ImageOperations.prototype['createImages'] = ImageOperations.prototype.createImages = /** @suppress {undefinedVars, duplicate} @this{Object} */function(base46Str) {
   var self = this.ptr;
@@ -285,6 +245,26 @@ ImageOperations.prototype['encodeMessages'] = ImageOperations.prototype.encodeMe
 ImageOperations.prototype['encodeBytes'] = ImageOperations.prototype.encodeBytes = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
   var self = this.ptr;
   return UTF8ToString(_emscripten_bind_ImageOperations_encodeBytes_0(self));
+};;
+
+ImageOperations.prototype['std_convolve_clamp_to_0'] = ImageOperations.prototype.std_convolve_clamp_to_0 = /** @suppress {undefinedVars, duplicate} @this{Object} */function(channel, ker_w, ker_h, cr, cc) {
+  var self = this.ptr;
+  if (channel && typeof channel === 'object') channel = channel.ptr;
+  if (ker_w && typeof ker_w === 'object') ker_w = ker_w.ptr;
+  if (ker_h && typeof ker_h === 'object') ker_h = ker_h.ptr;
+  if (cr && typeof cr === 'object') cr = cr.ptr;
+  if (cc && typeof cc === 'object') cc = cc.ptr;
+  _emscripten_bind_ImageOperations_std_convolve_clamp_to_0_5(self, channel, ker_w, ker_h, cr, cc);
+};;
+
+ImageOperations.prototype['std_convolve_clamp_to_border'] = ImageOperations.prototype.std_convolve_clamp_to_border = /** @suppress {undefinedVars, duplicate} @this{Object} */function(channel, ker_w, ker_h, cr, cc) {
+  var self = this.ptr;
+  if (channel && typeof channel === 'object') channel = channel.ptr;
+  if (ker_w && typeof ker_w === 'object') ker_w = ker_w.ptr;
+  if (ker_h && typeof ker_h === 'object') ker_h = ker_h.ptr;
+  if (cr && typeof cr === 'object') cr = cr.ptr;
+  if (cc && typeof cc === 'object') cc = cc.ptr;
+  _emscripten_bind_ImageOperations_std_convolve_clamp_to_border_5(self, channel, ker_w, ker_h, cr, cc);
 };;
 
 ImageOperations.prototype['Undos'] = ImageOperations.prototype.Undos = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {

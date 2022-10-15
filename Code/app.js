@@ -8,16 +8,19 @@ const Module = require('./ipl.js');
 
 async function testIPLLibrary() {
   try {
-    const files = ["../../Data/images/tiger.jpg", "../../Data/images/bird.jpg", "../../Data/images/bird2.jpg"]
+    const files = ["../../Data/images/tiger.jpg"]
     const outputfiles = ["../../Data/lib_output/tiger.jpg", "../../Data/lib_output/bird.jpg", "../../Data/lib_output/bird2.jpg"];
-    const outputfilesOriginal = ["../../Data/lib_output/tiger_o.jpg", "../../Data/lib_output/bird_o.jpg", "../../Data/lib_output/bird2_o.jpg"];
+    const outputfilesOriginal = ["../../Data/lib_output/tiger_o.jpg"];
     let base64Combined = await combinesBase64Images(files);
     let images = new Module.ImageOperations();
     images.createImages(base64Combined);
     images.grayscale_avgs();
-    const base64Response = images.encodeBytes();
-    await splitsAndWriteBase64Images(base64Response, outputfiles);
-    images.Undos();
+    // const base64Response = images.encodeBytes();
+    // await splitsAndWriteBase64Images(base64Response, outputfiles);
+    // images.Undos();
+    // images.std_convolve_clamp_to_border(0, 3, 3, 1, 1);
+    // images.std_convolve_clamp_to_border(1, 3, 3, 1, 1);
+    images.std_convolve_clamp_to_0(2, 3, 3, 1, 1);
     const base64Response2 = images.encodeBytes();
     await splitsAndWriteBase64Images(base64Response2, outputfilesOriginal);
     

@@ -11,7 +11,7 @@
 
 int main() {
 
-    std::vector<std::string> files{ "../../Data/base64_images/tiger.txt", "../../Data/base64_images/bird.txt"};
+    std::vector<std::string> files{ "../../Data/base64_images/tiger.txt", "../../Data/base64_images/tiger.txt"};
     // std::vector<std::string> files{ "../../Data/base64_images/tiger.txt"};
     std::string base64Images;
     
@@ -35,36 +35,53 @@ int main() {
 
     ImageOperations* ops = new ImageOperations();
     ops->createImages(buffer);
-    ops->grayscale_avgs();
-    ops->writes("../../Data/progOutput/gray1.png");
+
+    double ker[] =  {   1/16.0,  2/16.0,  1/16.0,
+                        2/16.0, 4/16.0, 2/16.0,
+                        1/16.0, 2/16.0, 1/16.0
+                    };
+
+    ops->std_convolve_clamp_to_0(0, 3, 3, 1, 1);
+    ops->std_convolve_clamp_to_0(1, 3, 3, 1, 1);
+    ops->std_convolve_clamp_to_0(2, 3, 3, 1, 1);
+    ops->writes("../../Data/progOutput/blurred.png");
     ops->Undos();
+
+    ops->std_convolve_clamp_to_border(0, 3, 3, 1, 1);
+    ops->std_convolve_clamp_to_border(1, 3, 3, 1, 1);
+    ops->std_convolve_clamp_to_border(2, 3, 3, 1, 1);
+    ops->writes("../../Data/progOutput/blurred1.png");
+    ops->Undos();
+
+    // std::cout << ops->getMetrics() << std::endl;
+
  
-    char* b = ops->encodeBytes();
-    std::ofstream mynewfile;
-    mynewfile.open("../../Data/base64_images/combinedImages.txt");
-    mynewfile << b;
-    mynewfile.close();
+    // char* b = ops->encodeBytes();
+    // std::ofstream mynewfile;
+    // mynewfile.open("../../Data/base64_images/combinedImages.txt");
+    // mynewfile << b;
+    // mynewfile.close();
 
-    std::ifstream mynewerfile ("../../Data/base64_images/combinedImages.txt");
-    std::string newbase64Images;
-    if ( mynewerfile.is_open() ) { 
-        mynewerfile >> newbase64Images;
-    }
+    // std::ifstream mynewerfile ("../../Data/base64_images/combinedImages.txt");
+    // std::string newbase64Images;
+    // if ( mynewerfile.is_open() ) { 
+    //     mynewerfile >> newbase64Images;
+    // }
     
     
 
-    size_t len1 = newbase64Images.length();
-    char* buffer1 = (char*)malloc(sizeof(char) * len1);
-    std::strcpy(buffer1, newbase64Images.c_str());
+    // size_t len1 = newbase64Images.length();
+    // char* buffer1 = (char*)malloc(sizeof(char) * len1);
+    // std::strcpy(buffer1, newbase64Images.c_str());
 
-    ImageOperations* ops2 = new ImageOperations();
-    ops2->createImages(buffer1);
-    ops2->grayscale_avgs();
-    ops2->writes("../../Data/progOutput/gray2.png");
+    // ImageOperations* ops2 = new ImageOperations();
+    // ops2->createImages(buffer1);
+    // ops2->grayscale_avgs();
+    // ops2->writes("../../Data/progOutput/gray2.png");
 
-    //delete ops;
-    delete ops2;
-    mynewerfile.close();
+    delete ops;
+    //delete ops2;
+    //mynewerfile.close();
 
     // ops->Undos();
     // ops->writes("../../Data/progOutput/gray.png");
