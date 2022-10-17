@@ -1,35 +1,26 @@
 #include <string>
 #include <sstream>
 #include <string.h>
+#include <vector>
+#include <iostream>
 
 class Performance {
     private:
-        std::string functionName;
-        std::string timeTaken;
-        std::string index;
+        std::vector<const char*> results;
+        
        
     public:
         Performance();
-        void setFuntionName(std::string functionName_){
-            this->functionName = functionName_;
+
+        void addResult(const char* result){
+            results.push_back(result);
+            //  std::cout << result << std::endl;
         }
 
-        void setTimeTaken(std::string timeTaken_){
-            this->timeTaken = timeTaken_;
-        }
-
-        void setIndex(std::string index_){
-            this->index = index_;
-        }
-
-        std::string getFuntionName(){
-            return this->functionName;
-        }
-         std::string getTimeTaken(){
-            return this->timeTaken;
-        }
-         std::string getIndex(){
-            return this->index;
+        void getResult() {
+            for (auto r: results){
+                std::cout << r << std::endl;
+            }
         }
 
         

@@ -47,8 +47,24 @@ void EMSCRIPTEN_KEEPALIVE emscripten_bind_ImageOperations_encodeMessages_1(Image
   self->encodeMessages(message);
 }
 
+char* EMSCRIPTEN_KEEPALIVE emscripten_bind_ImageOperations_decodeMessagesLib_0(ImageOperations* self) {
+  return self->decodeMessagesLib();
+}
+
 char* EMSCRIPTEN_KEEPALIVE emscripten_bind_ImageOperations_encodeBytes_0(ImageOperations* self) {
   return self->encodeBytes();
+}
+
+char* EMSCRIPTEN_KEEPALIVE emscripten_bind_ImageOperations_getMetrics_0(ImageOperations* self) {
+  return self->getMetrics();
+}
+
+void EMSCRIPTEN_KEEPALIVE emscripten_bind_ImageOperations_flipX_0(ImageOperations* self) {
+  self->flipX();
+}
+
+void EMSCRIPTEN_KEEPALIVE emscripten_bind_ImageOperations_flipY_0(ImageOperations* self) {
+  self->flipY();
 }
 
 void EMSCRIPTEN_KEEPALIVE emscripten_bind_ImageOperations_std_convolve_clamp_to_0_5(ImageOperations* self, unsigned char channel, unsigned int ker_w, unsigned int ker_h, unsigned int cr, unsigned int cc) {

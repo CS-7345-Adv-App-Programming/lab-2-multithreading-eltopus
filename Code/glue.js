@@ -242,9 +242,29 @@ ImageOperations.prototype['encodeMessages'] = ImageOperations.prototype.encodeMe
   _emscripten_bind_ImageOperations_encodeMessages_1(self, message);
 };;
 
+ImageOperations.prototype['decodeMessagesLib'] = ImageOperations.prototype.decodeMessagesLib = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return UTF8ToString(_emscripten_bind_ImageOperations_decodeMessagesLib_0(self));
+};;
+
 ImageOperations.prototype['encodeBytes'] = ImageOperations.prototype.encodeBytes = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
   var self = this.ptr;
   return UTF8ToString(_emscripten_bind_ImageOperations_encodeBytes_0(self));
+};;
+
+ImageOperations.prototype['getMetrics'] = ImageOperations.prototype.getMetrics = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return UTF8ToString(_emscripten_bind_ImageOperations_getMetrics_0(self));
+};;
+
+ImageOperations.prototype['flipX'] = ImageOperations.prototype.flipX = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _emscripten_bind_ImageOperations_flipX_0(self);
+};;
+
+ImageOperations.prototype['flipY'] = ImageOperations.prototype.flipY = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _emscripten_bind_ImageOperations_flipY_0(self);
 };;
 
 ImageOperations.prototype['std_convolve_clamp_to_0'] = ImageOperations.prototype.std_convolve_clamp_to_0 = /** @suppress {undefinedVars, duplicate} @this{Object} */function(channel, ker_w, ker_h, cr, cc) {

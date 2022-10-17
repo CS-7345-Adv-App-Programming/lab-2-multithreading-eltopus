@@ -12,7 +12,11 @@ interface ImageOperations  {
     void grayscale_lums();
     void colorMasks(float r, float g, float b);
     void encodeMessages(DOMString  message);
+    DOMString decodeMessagesLib();
     DOMString encodeBytes();
+    DOMString getMetrics();
+    void flipX();
+    void flipY();
     void std_convolve_clamp_to_0(octet channel, unsigned long ker_w, unsigned long ker_h, unsigned long cr, unsigned long cc);
     void std_convolve_clamp_to_border(octet channel, unsigned long ker_w, unsigned long ker_h, unsigned long cr, unsigned long cc);
     void Undos();

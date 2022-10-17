@@ -21,6 +21,23 @@ enum Type {
 
 extern bool write(const char* filename);
 
+// static double ker[] =  {   1/16.0,  2/16.0,  1/16.0,
+//                         2/16.0, 4/16.0, 2/16.0,
+//                         1/16.0, 2/16.0, 1/16.0
+//                 };
+
+static double ker[9] = {
+		1/16., 2/16., 1/16.,
+		2/16., 4/16., 2/16.,
+		1/16., 2/16., 1/16.
+	};
+                
+static double emboss_ker[] = { -2/9.0, -1/9.0, 0,
+                            -1/9.0, 1/9.0, 0,
+                            0, 1/9.0, 2/9.0
+
+};
+
 
 struct Image 
 {
@@ -42,70 +59,50 @@ struct Image
     Image(const char* input);
 
      virtual ~Image();
+
+    virtual Image* getState() {
+        return state_;
+    }
     
+    void grayscale_avgs();
 
-    void grayscale_avg();
-
-    void grayscale_lum();
+    void grayscale_lums();
     
-    void colorMask(float r, float g, float b);
+    void colorMasks(float r, float g, float b);
 
-    void encodeMessage(const char* message);
+    void encodeMessages(const char* message);
 
-    void decodeMessage(char* buffer, size_t* messageLength);
+    void decodeMessages(char* buffer, size_t* messageLength);
 
     bool write(const char* filename);
 
     Type getFileType(const char* filename);
 
-    char* encodeByte();
+    char* encodeBytes();
 
     std::string encodeByteString();
-
-    Image& std_convolve_clamp_to_0(uint8_t channel, uint32_t ker_w, uint32_t ker_h, double ker[], uint32_t cr, uint32_t cc);
-
-    void std_convolve_clamp_to_0v(uint8_t channel, uint32_t ker_w, uint32_t ker_h, double ker[], uint32_t cr, uint32_t cc);
-
-    Image& std_convolve_clamp_to_border(uint8_t channel, uint32_t ker_w, uint32_t ker_h, double ker[], uint32_t cr, uint32_t cc) ;
-
-    void std_convolve_clamp_to_borderv(uint8_t channel, uint32_t ker_w, uint32_t ker_h, double ker[], uint32_t cr, uint32_t cc) ;
-
-    Image& std_convolve_cyclic(uint8_t channel, uint32_t ker_w, uint32_t ker_h, double ker[], uint32_t cr, uint32_t cc);
-
-    uint32_t rev(uint32_t n, uint32_t a);
-
-    void bit_rev(uint32_t n, std::complex<double> a[], std::complex<double>* A);
-
-    void fft(uint32_t n, std::complex<double> x[], std::complex<double>* X);
-
-    void ifft(uint32_t n, std::complex<double> X[], std::complex<double>* x);
-
-    void dft_2D(uint32_t m, uint32_t n, std::complex<double> x[], std::complex<double>* X);
-
-    void idft_2D(uint32_t m, uint32_t n, std::complex<double> X[], std::complex<double>* x);
-
+    
     void loadFromMemory(const std::vector<char> &img_data);
 
-    void pad_kernel(uint32_t ker_w, uint32_t ker_h, double ker[], uint32_t cr, uint32_t cc, uint32_t pw, uint32_t ph, std::complex<double>* pad_ker);
+    Image& std_convolve_clamp_to_0(uint8_t channel, uint32_t ker_w, uint32_t ker_h, uint32_t cr, uint32_t cc);
 
-    void pointwise_product(uint64_t l, std::complex<double> a[], std::complex<double> b[], std::complex<double>* p);
+    void std_convolve_clamp_to_0v(uint8_t channel, uint32_t ker_w, uint32_t ker_h, uint32_t cr, uint32_t cc);
 
-    Image& fd_convolve_clamp_to_0(uint8_t channel, uint32_t ker_w, uint32_t ker_h, double ker[], uint32_t cr, uint32_t cc);
+    Image& std_convolve_clamp_to_border(uint8_t channel, uint32_t ker_w, uint32_t ker_h, uint32_t cr, uint32_t cc) ;
 
-    Image& fd_convolve_clamp_to_border(uint8_t channel, uint32_t ker_w, uint32_t ker_h, double ker[], uint32_t cr, uint32_t cc);
+    void std_convolve_clamp_to_borderv(uint8_t channel, uint32_t ker_w, uint32_t ker_h, uint32_t cr, uint32_t cc) ;
 
-    Image& fd_convolve_cyclic(uint8_t channel, uint32_t ker_w, uint32_t ker_h, double ker[], uint32_t cr, uint32_t cc);
+    Image& flipX();
+	Image& flipY();
 
-    Image& convolve_linear(uint8_t channel, uint32_t ker_w, uint32_t ker_h, double ker[], uint32_t cr, uint32_t cc);
 
-    Image& convolve_clamp_to_border(uint8_t channel, uint32_t ker_w, uint32_t ker_h, double ker[], uint32_t cr, uint32_t cc);
 
-    Image& convolve_cyclic(uint8_t channel, uint32_t ker_w, uint32_t ker_h, double ker[], uint32_t cr, uint32_t cc);
+
+    // For later
     
-    
 
 
-// protected:
+private:
     uint8_t* data = NULL;
     size_t size = 0;
     int w;

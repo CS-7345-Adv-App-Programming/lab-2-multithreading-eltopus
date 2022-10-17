@@ -8,12 +8,98 @@
 #include "image_operations.cpp"
 
 
+void writeMetrics(char* metrics) {
+    std::ofstream myfile ("cPlusMetrics.csv");
+    if (myfile.is_open())
+    {
+        myfile << metrics;
+        myfile.close();
+    }
+    else std::cout << "Unable to open file";
+};
 
-int main() {
+void createTestImages(ImageOperations* ops, int n) {
 
-    std::vector<std::string> files{ "../../Data/base64_images/tiger.txt", "../../Data/base64_images/tiger.txt"};
-    // std::vector<std::string> files{ "../../Data/base64_images/tiger.txt"};
+    for (int i =0; i < n; i++){
+
+        // Perform operations
+        ops->grayscale_avgs();
+        ops->writes("../../Data/cPlusOutput/tiger_gray_avg.png") ;
+        ops->Undos();
+        ops->grayscale_lums();
+        ops->writes("../../Data/cPlusOutput/tiger_gray_lum.png") ;
+        ops->Undos();
+        ops->colorMasks(1, 0, 0);
+        ops->writes("../../Data/cPlusOutput/tiger_color_mask.png") ;
+        ops->Undos();
+        ops->encodeMessages("Some looooooooooooooooooooooooooooooooooooooooooooooooooooon strinnnnnnnnnnnnnnnnnnnnnnnnnnng");
+        std::string decodedString = ops->decodeMessagesLib();
+        std::cout << "decodedMessage: " << decodedString << std::endl;
+        ops->Undos();
+        // Apply to all three channels
+        ops->std_convolve_clamp_to_0(0, 3, 3, 1, 1);
+        ops->std_convolve_clamp_to_0(1, 3, 3, 1, 1);
+        ops->std_convolve_clamp_to_0(2, 3, 3, 1, 1);
+        ops->writes("../../Data/cPlusOutput/tiger_blur1.png");
+        ops->Undos();
+        ops->Undos();
+        ops->Undos();
+
+        // Apply to all three channels
+        ops->std_convolve_clamp_to_border(0, 3, 3, 1, 1);
+        ops->std_convolve_clamp_to_border(1, 3, 3, 1, 1);
+        ops->std_convolve_clamp_to_border(2, 3, 3, 1, 1);
+        ops->writes("../../Data/cPlusOutput/tiger_blur2.png");
+        ops->Undos();
+        ops->Undos();
+        ops->Undos();
+
+        ops->flipX();
+        ops->writes("../../Data/cPlusOutput/tiger_flipX.png");
+        ops->Undos();
+        ops->flipY();
+        ops->writes("../../Data/cPlusOutput/tiger_flipY.png");
+        ops->Undos();
+    }
+};
+
+void createMetrics(ImageOperations* ops, int n) {
+
+    for (int i =0; i < n; i++){
+
+        // Perform operations
+        ops->grayscale_avgs();
+        ops->Undos();
+        ops->grayscale_lums();
+        ops->Undos();
+        ops->colorMasks(1, 0, 0);
+        ops->Undos();
+        ops->encodeMessages("Some looooooooooooooooooooooooooooooooooooooooooooooooooooon strinnnnnnnnnnnnnnnnnnnnnnnnnnng");
+        std::string decodedString = ops->decodeMessagesLib();
+        // std::cout << "decodedMessage: " << decodedString << std::endl;
+        ops->Undos();
+        ops->std_convolve_clamp_to_0(0, 3, 3, 1, 1);
+        ops->Undos();
+        ops->std_convolve_clamp_to_border(0, 3, 3, 1, 1);
+        ops->Undos();
+        ops->flipX();
+        ops->Undos();
+        ops->flipY();
+        char* base64Response = ops->encodeBytes();
+    }
+    char* metrics = ops->getMetrics();
+    writeMetrics(metrics);
+};
+
+
+void runOperations(int n, std::vector<std::string> files) {
+
+    if (n < 1){
+        n = 1;
+    }
     std::string base64Images;
+
+    //Generate combined comma seperated base64 image encoded string 
     
     for (int i = 0; i < files.size(); i++) {
         std::ifstream myfile (files[i]);
@@ -27,106 +113,25 @@ int main() {
     
     }
 
-
-
+    // Create char* buffer for the encoded string
     size_t len = base64Images.length();
     char* buffer = (char*)malloc(sizeof(char) * len);
     std::strcpy(buffer, base64Images.c_str());
 
-    ImageOperations* ops = new ImageOperations();
-    ops->createImages(buffer);
+    // Create instance of Image Operations
+    ImageOperations* ops1 = new ImageOperations();
+    ops1->createImages(buffer);
+    createTestImages(ops1, 1);
 
-    double ker[] =  {   1/16.0,  2/16.0,  1/16.0,
-                        2/16.0, 4/16.0, 2/16.0,
-                        1/16.0, 2/16.0, 1/16.0
-                    };
-
-    ops->std_convolve_clamp_to_0(0, 3, 3, 1, 1);
-    ops->std_convolve_clamp_to_0(1, 3, 3, 1, 1);
-    ops->std_convolve_clamp_to_0(2, 3, 3, 1, 1);
-    ops->writes("../../Data/progOutput/blurred.png");
-    ops->Undos();
-
-    ops->std_convolve_clamp_to_border(0, 3, 3, 1, 1);
-    ops->std_convolve_clamp_to_border(1, 3, 3, 1, 1);
-    ops->std_convolve_clamp_to_border(2, 3, 3, 1, 1);
-    ops->writes("../../Data/progOutput/blurred1.png");
-    ops->Undos();
-
-    // std::cout << ops->getMetrics() << std::endl;
-
- 
-    // char* b = ops->encodeBytes();
-    // std::ofstream mynewfile;
-    // mynewfile.open("../../Data/base64_images/combinedImages.txt");
-    // mynewfile << b;
-    // mynewfile.close();
-
-    // std::ifstream mynewerfile ("../../Data/base64_images/combinedImages.txt");
-    // std::string newbase64Images;
-    // if ( mynewerfile.is_open() ) { 
-    //     mynewerfile >> newbase64Images;
-    // }
-    
-    
-
-    // size_t len1 = newbase64Images.length();
-    // char* buffer1 = (char*)malloc(sizeof(char) * len1);
-    // std::strcpy(buffer1, newbase64Images.c_str());
-
-    // ImageOperations* ops2 = new ImageOperations();
-    // ops2->createImages(buffer1);
-    // ops2->grayscale_avgs();
-    // ops2->writes("../../Data/progOutput/gray2.png");
-
-    delete ops;
-    //delete ops2;
-    //mynewerfile.close();
-
-    // ops->Undos();
-    // ops->writes("../../Data/progOutput/gray.png");
-
-    // std::cout << base64Images << std::endl;
-    
-    // std::ifstream myfile ("../../Data/base64_images/tiger.txt");
-    // std::string mystring;
-    // if ( myfile.is_open() ) { 
-    //     myfile >> mystring;
-    // }
+    ImageOperations* ops2 = new ImageOperations();
+    ops2->createImages(buffer);
+    createMetrics(ops2, n);
+    delete ops1;
+    delete ops2;
+}
 
 
-    // size_t len = mystring.length();
-    // char* buffer = (char*)malloc(sizeof(char) * len);
-    // std::strcpy(buffer, mystring.c_str());
-
-    // ImageOperations* ops = new ImageOperations(buffer);
-
-    // ImageOperations* ops = new ImageOperations();
-    
-    // std::cout << std::string(ops->encodeByte()).length();
-
-    // const char* bytes = "1372883,1372889,1372882";
-    // ops->createImage(buffer, bytes);
-    
-    // ops->grayscale_avg();
-    // ops->write("../../Data/output/gray.png");
-    // ops->Undo();
-    // ops->write("../../Data/output/original.png");
-
-    // Originator* state = new Originator(buffer);
-    // state->grayscale_avg();
-    // state->write("../../Data/output/gray.png");
-    // state->undo();
-    // state->write("../../Data/output/original.png");
-    // state->grayscale_avg();
-    // state->write("../../Data/output/gray2.png");
-    // state->undo();
-    // state->write("../../Data/output/original2.png");
-
-  
-   
-    // std::cout << images->images_.size() << std::endl;
-
-    // myfile.close();
-    
+int main() {
+    std::vector<std::string> files{ "../../Data/base64_images/tiger.txt", "../../Data/base64_images/tiger.txt"};
+    runOperations(50, files);
 }
