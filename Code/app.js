@@ -112,7 +112,7 @@ async function runOperations(n) {
     let base64Combined = await combinesBase64Images(files);
     let images1 = new Module.ImageOperations();
     images1.createImages(base64Combined);
-    // await createTestImages(images1, outfiles);
+    await createTestImages(images1, outfiles);
 
     let images2 = new Module.ImageOperations();
     images2.createImages(base64Combined);
