@@ -116,7 +116,7 @@ async function runOperations(n) {
 
     let images2 = new Module.ImageOperations();
     images2.createImages(base64Combined);
-    await createMetrics(images2, 50);
+    await createMetrics(images2, 100);
 
   
   }catch (error) {

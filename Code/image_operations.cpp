@@ -40,7 +40,13 @@ class ImageOperations {
        
 
         void restores(std::vector<Image *> oldStates) {
-            this->currentStates = oldStates;
+            for(auto& pointer : currentStates){
+                delete pointer;
+                pointer = nullptr;
+            }
+        
+            currentStates.erase(std::remove(currentStates.begin(), currentStates.end(), nullptr), currentStates.end());
+            currentStates = oldStates;
             
         }
         
@@ -53,6 +59,12 @@ class ImageOperations {
 
         ~ImageOperations() {
             for (auto i : this->currentStates) delete i;
+            for (auto i : backupStates) {
+                for (auto j : i){
+                    delete j;
+                }
+            } 
+            performaceResult.clear();
         }
 
 
@@ -156,6 +168,10 @@ class ImageOperations {
             return buffer;
         }
 
+        void pop(){
+            this->backupStates.pop_back();
+        }
+
         //---------------------------------------------------------------------------------------------Operations ended
 
          bool writes(const char* filename)  {
@@ -170,6 +186,7 @@ class ImageOperations {
             }
             std::vector<Image *> images = backupStates.back();
             this->backupStates.pop_back();
+            //std::cout << backupStates.size() << std::endl;
             try {
                 // images[0]->write("../../Data/cPlusOutput/tiger_gray_lum_d.png") ;
                 this->restores(images);

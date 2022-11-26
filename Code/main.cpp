@@ -68,25 +68,26 @@ void createMetrics(ImageOperations* ops, int n) {
     for (int i =0; i < n; i++){
 
         // Perform operations
-        ops->grayscale_avgs();
+        ops->grayscale_avgs(); //1
         ops->Undos();
-        ops->grayscale_lums();
+        ops->grayscale_lums(); // 2
         ops->Undos();
-        ops->colorMasks(1, 0, 0);
+        ops->colorMasks(1, 0, 0); //3
         ops->Undos();
-        ops->encodeMessages("Some looooooooooooooooooooooooooooooooooooooooooooooooooooon strinnnnnnnnnnnnnnnnnnnnnnnnnnng");
-        std::string decodedString = ops->decodeMessagesLib();
+        ops->encodeMessages("Some looooooooooooooooooooooooooooooooooooooooooooooooooooon strinnnnnnnnnnnnnnnnnnnnnnnnnnng"); // 4
+        std::string decodedString = ops->decodeMessagesLib(); // 5
         // std::cout << "decodedMessage: " << decodedString << std::endl;
         ops->Undos();
-        ops->std_convolve_clamp_to_0(0, 3, 3, 1, 1);
+        ops->std_convolve_clamp_to_0(0, 3, 3, 1, 1); // 6
         ops->Undos();
-        ops->std_convolve_clamp_to_border(0, 3, 3, 1, 1);
+        ops->std_convolve_clamp_to_border(0, 3, 3, 1, 1); // 7
         ops->Undos();
-        ops->flipX();
+        ops->flipX(); // 8
         ops->Undos();
-        ops->flipY();
-        char* base64Response = ops->encodeBytes();
+        ops->flipY(); // 9
+        
     }
+    char* base64Response = ops->encodeBytes();
     char* metrics = ops->getMetrics();
     writeMetrics(metrics);
 };
@@ -119,19 +120,19 @@ void runOperations(int n, std::vector<std::string> files) {
     std::strcpy(buffer, base64Images.c_str());
 
     // Create instance of Image Operations
-    ImageOperations* ops1 = new ImageOperations();
-    ops1->createImages(buffer);
-    createTestImages(ops1, 1);
+    // ImageOperations* ops1 = new ImageOperations();
+    // ops1->createImages(buffer);
+    // createTestImages(ops1, 1);
 
     ImageOperations* ops2 = new ImageOperations();
     ops2->createImages(buffer);
     createMetrics(ops2, n);
-    delete ops1;
+    //delete ops1;
     delete ops2;
 }
 
 
 int main() {
-    std::vector<std::string> files{ "../../Data/base64_images/tiger.txt", "../../Data/base64_images/tiger.txt"};
+    std::vector<std::string> files{ "../../Data/base64_images/tiger.txt", "../../Data/base64_images/tiger.txt", "../../Data/base64_images/tiger.txt"};
     runOperations(50, files);
 }
